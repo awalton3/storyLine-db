@@ -1,1 +1,35 @@
-<p>login works!</p>
+<!-- <div fxLayout="column" fxLayoutAlign="center center" class="fade-in heightFull background-base">
+  <img class="logo--width" src="assets/img/mughub_logo_horizontal_onDark.png">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
+      <input matInput formControlName="email" type="email" placeholder="Email" class="auth-input-field" fxLayoutAlign="center center">
+      <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">email</i></span>
+    </mat-form-field>
+    <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
+      <input matInput formControlName="password" type="password" placeholder="Password" class="auth-input-field" fxLayoutAlign="center center">
+      <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">lock</i></span>
+      <span matSuffix (click)="onResetPassword()" class="auth-input-field-forgot">?</span>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit" class="action-button">LOGIN</button>
+    <p class="auth-switch-prompt" routerLink="/mughub/register">Don't have an account, register here.</p>
+  </form>
+</div> -->
+
+  <div fxLayout="column" fxLayoutAlign="center center" class="heightFull background-base">
+    <img class="logo-short" src="assets/storyLine-logo-short.png">
+    <img class="logo--width" src="assets/storyLine-logo-white.png">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center">
+      <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
+        <input matInput formControlName="email" type="email" placeholder="Email" class="auth-input-field" fxLayoutAlign="center center">
+        <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">email</i></span>
+      </mat-form-field>
+      <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
+        <input matInput formControlName="password" type="password" placeholder="Password" class="auth-input-field" fxLayoutAlign="center center">
+        <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">lock</i></span>
+        <span matSuffix class="auth-input-field-forgot">?</span>
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit" class="action-button">LOGIN</button>
+      <br>
+      <p class="auth-switch-prompt">Don't have an account, register here.</p>
+    </form>
+  </div>

@@ -1,0 +1,63 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$mat-base: (
+  50: #f5e2e9,
+  100: #e6b6c9,
+  200: #d585a5,
+  300: #c45480,
+  400: #b82f65,
+  500: #ab0a4a,
+  600: #a40943,
+  700: #9a073a,
+  800: #910532,
+  900: #800322,
+  A100: #ffadbc,
+  A200: #ff7a93,
+  A400: #ff4769,
+  A700: #ff2e54,
+  contrast: (50 : #000000, 100 : #000000, 200 : #000000, 300 : #000000, 400 : #ffffff, 500 : #ffffff, 600 : #ffffff, 700 : #ffffff, 800 : #ffffff, 900 : #ffffff, A100 : #000000, A200 : #000000, A400 : #ffffff, A700 : #ffffff)
+);
+
+// $mat-accent: (
+//   50: #fff6e4,
+//   100: #ffe8bc,
+//   200: #ffd990,
+//   300: #ffca63,
+//   400: #ffbe41,
+//   500: #ffb320,
+//   600: #ffac1c,
+//   700: #ffa318,
+//   800: #ff9a13,
+//   900: #ff8b0b,
+//   A100: #ffffff,
+//   A200: #fffaf6,
+//   A400: #ffe0c3,
+//   A700: #ffd3a9,
+//   contrast: (50 : #000000, 100 : #000000, 200 : #000000, 300 : #000000, 400 : #ffffff, 500 : #ffffff, 600 : #ffffff, 700 : #ffffff, 800 : #ffffff, 900 : #ffffff, A100 : #000000, A200 : #000000, A400 : #ffffff, A700 : #ffffff)
+// );
+
+$mat-accent: (
+ 50: #fee2ed,
+100: #fdb7d3,
+200: #fb87b6,
+300: #f95798,
+400: #f83382,
+500: #f70f6c,
+600: #f60d64,
+700: #f50b59,
+800: #f3084f,
+900: #f1043d,
+A100: #ffffff,
+A200: #ffe5ea,
+A400: #ffb2c0,
+A700: #ff98ac,
+contrast: (50 : #000000, 100 : #000000, 200 : #000000, 300 : #000000, 400 : #ffffff, 500 : #ffffff, 600 : #ffffff, 700 : #ffffff, 800 : #ffffff, 900 : #ffffff, A100 : #000000, A200 : #000000, A400 : #ffffff, A700 : #ffffff)
+
+);
+
+$storyLine-app-primary: mat-palette($mat-base, 500);
+$storyLine-app-accent: mat-palette($mat-accent, 500);
+$storyLine-app-warn: mat-palette($mat-red);
+$storyLine-app-theme: mat-light-theme($storyLine-app-primary, $storyLine-app-accent, $storyLine-app-warn);
+@include angular-material-theme($storyLine-app-theme);

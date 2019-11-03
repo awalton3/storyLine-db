@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Montserrat', sans-serif !important; }
+
+/* common app css classes */
+.heightFull {
+	height: 100vh !important;
+}
+
+.widthFull {
+	width: 100vw !important;
+}
+
+.widthFullPer {
+	width: 100% !important;
+}
+
+.heightFullPer {
+	height: 100% !important;
+}
+
+.widthHalfPer {
+	width: 50% !important;
+}
+
+.background-eee {
+	background-color: #eee !important;
+}
+
+.background-base {
+	background-color: #AB0A4A !important;
+}
+
+.paddingNone {
+	padding: 0 !important;
+}
+
+.marginNone {
+	margin: 0 !important;
+}
+
+.action-button {
+	border-radius: 33.5px !important;
+	font-family: 'Montserrat', sans-serif !important;
+	font-weight: 600 !important;
+	width: 320px !important;
+	font-size: 16px !important;
+	color: #6b062f !important;
+}
+@media only screen and (max-width: 330px) {
+	.action-button {
+		width: 250px !important;
+	}
+}
