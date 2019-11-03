@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsMaterialComponentsModule } from './shared/forms-material-components.module';
 import { MaterialComponentsModule } from './shared/material-components.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -16,10 +18,11 @@ import { MaterialComponentsModule } from './shared/material-components.module';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsMaterialComponentsModule,
-    MaterialComponentsModule
+    MaterialComponentsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SQLService } from './sql.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'storyLine';
+
+  constructor(private sql: SQLService) {
+  }
+
+  ngOnInit() {
+    this.sql.getStories().subscribe(stories => {
+      console.log(stories)
+    })
+  }
+
 }
