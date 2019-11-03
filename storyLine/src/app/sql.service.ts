@@ -15,4 +15,6 @@ export class SQLService {
   getStories(): any {
     return this.http.get(`${this.baseUrl}/read.php`, {responseType: 'text'});
   }
+
+
 }
