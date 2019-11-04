@@ -1,0 +1,19 @@
+.one-liner-card {
+  width: 300px;
+}
+
+.one-liner-card-content {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 65px;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #ab0a4a
+}
+
+.votes-container {
+  background-color: #ab0a4a
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color:
+}
