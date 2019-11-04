@@ -5,10 +5,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+
 import { FormsMaterialComponentsModule } from './shared/forms-material-components.module';
 import { MaterialComponentsModule } from './shared/material-components.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+
+/* Child components */
+import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 
@@ -24,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     FormsMaterialComponentsModule,
     MaterialComponentsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
