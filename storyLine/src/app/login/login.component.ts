@@ -19,14 +19,15 @@ export class LoginComponent implements OnInit {
 
   initForm() {
     this.loginForm = new FormGroup({
-      'email': new FormControl(null, [ Validators.email ]),
+      'username': new FormControl(null),
       'password': new FormControl(null, [ Validators.required ])
     });
   }
 
   onSubmit() {
-    sessionStorage.setItem('username', this.loginForm.value.email);
-    this.router.navigate(['./home'])
+    console.log(this.loginForm);
+    sessionStorage.setItem('username', this.loginForm.value.username);
+    this.router.navigate(['./home']);
   }
 
 }

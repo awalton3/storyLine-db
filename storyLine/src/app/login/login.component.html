@@ -22,8 +22,8 @@
 
     <form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center center">
       <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
-        <input matInput formControlName="email" type="email" placeholder="Email" class="auth-input-field" fxLayoutAlign="center center">
-        <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">email</i></span>
+        <input matInput formControlName="username" type="text" placeholder="Username" class="auth-input-field" fxLayoutAlign="center center">
+        <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">person</i></span>
       </mat-form-field>
       <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
         <input matInput formControlName="password" type="password" placeholder="Password" class="auth-input-field" fxLayoutAlign="center center">
@@ -32,7 +32,7 @@
       </mat-form-field>
       <button (click)="onSubmit()" mat-raised-button color="accent" class="action-button">LOGIN</button>
       <br>
-      <p class="auth-switch-prompt">Don't have an account, register here.</p>
+      <p class="auth-switch-prompt">Don't have an account? Register here!</p>
     </form>
 
   </div>
