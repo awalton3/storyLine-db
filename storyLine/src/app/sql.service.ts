@@ -4,14 +4,13 @@ import { HttpClient, HttpErrorResponse, HttpParams, HttpHeaders, HttpEvent, Http
 import { Observable, throwError, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class SQLService {
 
   baseUrl = 'http://db.cse.nd.edu:4201'
-  onUpdateOneliner = new Subject<string>(); 
+  onAddOneliner = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 

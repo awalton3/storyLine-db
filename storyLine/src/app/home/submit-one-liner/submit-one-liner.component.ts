@@ -24,9 +24,13 @@ export class SubmitOneLinerComponent implements OnInit {
     });
   }
 
-  // TODO :
   onSubmitForm() {
-    this.sql.onUpdateOneliner.next(this.oneLinerForm.value.content);
+    let oneLinerObj = {
+      content: this.oneLinerForm.value.content,
+      timestamp: new Date()
+    }
+    console.log(oneLinerObj.timestamp)
+    this.sql.onAddOneliner.next(oneLinerObj);
   }
 
 }
