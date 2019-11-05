@@ -38,6 +38,8 @@ body { margin: 0; font-family: 'Montserrat', sans-serif !important; }
 	margin: 0 !important;
 }
 
+/* Buttons */
+
 .action-button {
 	border-radius: 33.5px !important;
 	font-family: 'Montserrat', sans-serif !important;
@@ -50,4 +52,11 @@ body { margin: 0; font-family: 'Montserrat', sans-serif !important; }
 	.action-button {
 		width: 250px !important;
 	}
+}
+
+.bottom-right-fab {
+	position: fixed;
+	bottom: 0 !important;
+	right: 0 !important;
+	padding: 40px !important;
 }
