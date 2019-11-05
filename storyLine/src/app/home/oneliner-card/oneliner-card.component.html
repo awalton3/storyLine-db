@@ -1,5 +1,6 @@
 <mat-card fxFlex class="one-liner-card">
   <mat-card-content>
+    <i (click)="onDelete()" *ngIf="oneLiner.authorUsername === username" class="material-icons" style="color: grey; cursor: pointer">close</i>
     <!-- <span fxLayoutAlign="start start" class="one-liner-quote">"</span> -->
     <p class="one-liner-card-content">
       {{oneLiner.oneLiner}}

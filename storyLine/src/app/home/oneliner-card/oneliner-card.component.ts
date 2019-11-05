@@ -7,8 +7,11 @@ import { Subject } from 'rxjs';
   styleUrls: ['./oneliner-card.component.css']
 })
 export class OnelinerCardComponent implements OnInit {
+
   @Input() oneLiner : any;
   @Output() onUpdateLike = new Subject();
+  @Output() onDeleteOneLiner = new Subject();
+  username = sessionStorage.getItem('username');
 
   constructor() { }
 
@@ -18,6 +21,10 @@ export class OnelinerCardComponent implements OnInit {
 
   onLike() {
     this.onUpdateLike.next();
+  }
+
+  onDelete() {
+    this.onDeleteOneLiner.next();
   }
 
 }

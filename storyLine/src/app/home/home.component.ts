@@ -57,6 +57,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
   }
 
+  deleteOneLiner(oldOneLiner) {
+    this.sql.deleteOneLiner({"oneLiner":oldOneLiner}).subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error)
+    })
+  }
+
   ngOnDestroy() {
   }
 

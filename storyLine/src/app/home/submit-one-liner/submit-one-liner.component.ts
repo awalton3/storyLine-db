@@ -32,5 +32,4 @@ export class SubmitOneLinerComponent implements OnInit {
     console.log(oneLinerObj.timestamp)
     this.sql.onAddOneliner.next(oneLinerObj);
   }
-
 }

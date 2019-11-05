@@ -1,7 +1,7 @@
 <div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
 
 
-  <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike(oneLinerEl.oneLiner)"></app-oneliner-card>
+  <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike(oneLinerEl.oneLiner)" (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
 
   <div class="bottom-right-fab" (click)="onSubmitOneliner()">
     <button mat-fab color="accent">
