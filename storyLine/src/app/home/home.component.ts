@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy{
   listenForOneLiners() {
     this.sql.onUpdateOneliner.subscribe(newOneLiner => {
       console.log(newOneLiner)
+      this.addOneLiner(newOneLiner)
     })
   }
 
@@ -41,6 +42,17 @@ export class HomeComponent implements OnInit, OnDestroy{
 
   onSubmitOneliner() {
     this._bottomSheet.open(SubmitOneLinerComponent);
+  }
+
+  addOneLiner(newOneLiner) {
+    newOneLiner = { "oneLiner": newOneLiner, "numViews": 0,
+    "writtenAnon": 0, "timestamp":"2019-09-29 03:25:08", "authorUsername":"authorusernamegoeshere", 
+    "numUpVotes":"0"}
+    this.sql.insertOneLiner(newOneLiner).subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error)
+    })
   }
 
   ngOnDestroy() {
