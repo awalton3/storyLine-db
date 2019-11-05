@@ -13,7 +13,7 @@ export class SQLService {
   constructor(private http: HttpClient) { }
 
   getOneLiners(): any {
-    return this.http.get(`${this.baseUrl}/readAllOneLiners.php`, {responseType: 'text'});
+    return this.http.get(`${this.baseUrl}/readAllOneLiners.php`);
   }
 
   insertOneLiner(oneLinerObj): any {
