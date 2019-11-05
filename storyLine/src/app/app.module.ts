@@ -10,17 +10,22 @@ import { FormsMaterialComponentsModule } from './shared/forms-material-component
 import { MaterialComponentsModule } from './shared/material-components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 /* Child components */
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { OnelinerCardComponent } from './home/oneliner-card/oneliner-card.component';
+import { SubmitOneLinerComponent } from './home/submit-one-liner/submit-one-liner.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    OnelinerCardComponent,
+    SubmitOneLinerComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +34,11 @@ import { HomeComponent } from './home/home.component';
     FormsMaterialComponentsModule,
     MaterialComponentsModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatBottomSheetModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SubmitOneLinerComponent]
 })
 export class AppModule { }

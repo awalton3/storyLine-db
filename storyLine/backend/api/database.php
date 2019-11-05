@@ -11,7 +11,6 @@ define('DB_PASS', 'klm');
 define('DB_NAME', 'kmalecki');
 
 function connect() {
-  echo 'IN CONNECT.';
 
   $connect = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -21,7 +20,7 @@ function connect() {
   }
 
   //FIXME: we might need ASCII?
-  mysqli_set_charset($connect, "utf8");
+  mysqli_set_charset($connect, "ASCII");
   return $connect;
 
 }

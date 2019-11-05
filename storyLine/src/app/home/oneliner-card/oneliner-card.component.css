@@ -1,0 +1,40 @@
+.one-liner-card {
+  max-width: 300px;
+  min-width: 300px;
+  width: 300px;
+  font-family: 'Montserrat', sans-serif !important;
+  margin: 20px;
+}
+
+.one-liner-card-content {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 65px;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #ab0a4a;
+  margin: 15px;
+}
+
+.one-liner-quote {
+  font-size: 50px;
+  font-weight: 900;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #ab0a4a;
+}
+
+.votes-container {
+  width: 65px;
+  height: 50px;
+  background-color: #ab0a4a;
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  color: #fff;
+  border-radius: 50% 0 0 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.votes-container-icon {
+  font-size: 18px
+}
