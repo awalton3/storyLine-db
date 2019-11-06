@@ -1,0 +1,17 @@
+.container {
+  padding: 50px;
+  height: 500px;
+}
+
+textarea {
+  font-size: 40px;
+  line-height: 50px;
+  color: #800322;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+:host ::ng-deep .mat-form-field-label {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 30px;
+}

@@ -22,7 +22,7 @@ export class SubmitOneLinerComponent implements OnInit {
 
   initForm() {
     this.oneLinerForm = new FormGroup({
-      'content': new FormControl(null, [Validators.required])
+      'content': new FormControl(null)
     });
   }
 

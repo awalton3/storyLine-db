@@ -3,6 +3,7 @@ import { SQLService } from '../sql.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.component';
 import { Subscription } from 'rxjs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
 
   oneLiners: any;
-  constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet) { }
+  constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet, private _toolbar: MatToolbarModule) { }
   private subs: Subscription = new Subscription();
 
   ngOnInit() {
@@ -29,7 +30,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   listenForOneLiners() {
     this.subs.add(this.sql.onAddOneliner.subscribe(newOneLinerObj => {
-      console.log("hello")
       this.addOneLiner(newOneLinerObj)
     }))
   }

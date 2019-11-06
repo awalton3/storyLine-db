@@ -1,6 +1,6 @@
-<form [formGroup]="oneLinerForm" fxLayout="column" fxLayoutAlign="center center">
-  <mat-form-field>
-    <input matInput formControlName="content" type="text" placeholder="We may need a bigger boat?">
+<form [formGroup]="oneLinerForm" class="container" fxLayout="column" fxLayoutAlign="space-between center">
+  <mat-form-field floatLabel="never" fxFill>
+    <textarea matInput formControlName="content" type="text" placeholder="Alas, dumplings!" rows="10"></textarea>
   </mat-form-field>
   <button (click)="onSubmitForm()" mat-raised-button color="accent" class="action-button">Submit</button>
 </form>
