@@ -9,9 +9,10 @@ import { Subject } from 'rxjs';
 export class OnelinerCardComponent implements OnInit {
 
   @Input() oneLiner : any;
-  @Output() onUpdateLike = new Subject();
+  @Output() onUpdateLike = new Subject<Number>();
   @Output() onDeleteOneLiner = new Subject();
   username = sessionStorage.getItem('username');
+  liked = 0;
 
   constructor() { }
 
@@ -20,7 +21,11 @@ export class OnelinerCardComponent implements OnInit {
   }
 
   onLike() {
-    this.onUpdateLike.next();
+    if (this.liked == 0)
+      this.liked = 1;
+    else
+      this.liked = 0;
+    this.onUpdateLike.next(this.liked);
   }
 
   onDelete() {

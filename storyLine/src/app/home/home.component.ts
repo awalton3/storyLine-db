@@ -28,8 +28,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
   }
 
-  updateLike(oneLiner) {
-    oneLiner = { "oneLiner": oneLiner }
+  updateLike(liked, oneLiner) {
+    console.log(liked);
+    oneLiner = { "oneLiner": oneLiner , "change": liked}
     this.sql.updateOneLinerNumUpVotes(oneLiner).subscribe(res => {
     }, error => {
       console.log(error)
