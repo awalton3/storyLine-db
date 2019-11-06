@@ -8,8 +8,17 @@ if(isset($postdata) && !empty($postdata))
   $request = json_decode($postdata);
 
   $oneLiner = trim($request->oneLiner);
+  $change = (int)$request->change;
 
-  $stmt = mysqli_prepare($con, "update oneLiners set numUpVotes=(numUpVotes+1) where oneLiner=?");
+  if ($change == 1)
+  {
+    $stmt = mysqli_prepare($con, "update oneLiners set numUpVotes=(numUpVotes+1) where oneLiner=?");
+  }
+  else
+  {
+    $stmt = mysqli_prepare($con, "update oneLiners set numUpVotes=(numUpVotes-1) where oneLiner=?");
+  }
+
   if ($stmt)
   {
     mysqli_stmt_bind_param($stmt,"s", $oneLiner);
