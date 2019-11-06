@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SQLService } from '../sql.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -10,31 +11,34 @@ import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.com
 })
 
 export class HomeComponent implements OnInit, OnDestroy {
+
   oneLiners: any;
   constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet) { }
+  private subs: Subscription = new Subscription();
 
   ngOnInit() {
-    this.sql.getOneLiners().subscribe(oneLiners => {
-      console.log(oneLiners[0].oneLiner)
-      this.oneLiners = oneLiners
-    })
+    this.getOneLiners();
     this.listenForOneLiners();
   }
 
+  getOneLiners() {
+    this.subs.add(this.sql.getOneLiners().subscribe(oneLiners => {
+      this.oneLiners = oneLiners
+    }));
+  }
+
   listenForOneLiners() {
-    this.sql.onAddOneliner.subscribe(newOneLinerObj => {
-      console.log(newOneLinerObj)
+    this.subs.add(this.sql.onAddOneliner.subscribe(newOneLinerObj => {
       this.addOneLiner(newOneLinerObj)
-    })
+      this.getOneLiners();
+    }))
   }
 
   updateLike(oneLiner) {
     oneLiner = { "oneLiner": oneLiner }
     this.sql.updateOneLinerNumUpVotes(oneLiner).subscribe(res => {
-    }, error => {
-      console.log(error)
-    })
-
+      this.getOneLiners();
+    }, error => console.log(error))
   }
 
   onSubmitOneliner() {
@@ -51,21 +55,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       "numUpVotes": 0
     }
     this.sql.insertOneLiner(newOneLiner).subscribe(res => {
-      console.log(res);
-    }, error => {
-      console.log(error)
-    })
+      console.log(res)
+    }, error => console.log(error))
   }
 
   deleteOneLiner(oldOneLiner) {
-    this.sql.deleteOneLiner({"oneLiner":oldOneLiner}).subscribe(res => {
-      console.log(res);
-    }, error => {
-      console.log(error)
-    })
+    this.subs.add(this.sql.deleteOneLiner({ "oneLiner": oldOneLiner }).subscribe(res => {
+      this.getOneLiners();
+    }, error => console.log(error)))
   }
 
   ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
 }
