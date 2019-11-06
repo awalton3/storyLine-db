@@ -1,5 +1,14 @@
-<div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
+<mat-toolbar class="toolbar">
 
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="bar-container">
+    <img class="logo-short" src="assets/storyLine-logo-short.png">
+    <img class="logo--width" src="assets/storyLine-logo-white.png" fxLayoutAlign="center center">
+    <div class="spanner"></div>
+  </div>
+
+</mat-toolbar>
+
+<div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
 
   <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike(oneLinerEl.oneLiner)" (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
 

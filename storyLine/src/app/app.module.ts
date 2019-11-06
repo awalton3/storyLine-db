@@ -11,7 +11,8 @@ import { MaterialComponentsModule } from './shared/material-components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 /* Child components */
 import { LoginComponent } from './login/login.component';
@@ -36,7 +37,8 @@ import { SubmitOneLinerComponent } from './home/submit-one-liner/submit-one-line
     MaterialComponentsModule,
     HttpClientModule,
     MatCardModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatToolbarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SQLService } from '../sql.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.com
 
 export class HomeComponent implements OnInit, OnDestroy {
   oneLiners: any;
-  constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet) { }
+  constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet,
+    private _toolbar: MatToolbarModule) { }
 
   ngOnInit() {
     this.sql.getOneLiners().subscribe(oneLiners => {

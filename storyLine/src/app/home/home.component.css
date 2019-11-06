@@ -1,4 +1,26 @@
 .container {
-  background-color: #ab0a4a;
+  background-color: #800322;
   height: 100%;
+}
+
+.bar-container {
+  height: 100%;
+  width: 100vw;
+}
+
+.spanner {
+  height: 100px;
+  width: 100px;
+}
+
+.toolbar {
+  background-color: #eeee;
+}
+
+.logo-short {
+  width: 100px;
+}
+
+.logo--width {
+  width: 250px
 }
