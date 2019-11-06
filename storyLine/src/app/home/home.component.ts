@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   listenForOneLiners() {
     this.subs.add(this.sql.onAddOneliner.subscribe(newOneLinerObj => {
+      console.log("hello")
       this.addOneLiner(newOneLinerObj)
-      this.getOneLiners();
     }))
   }
 
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log(liked);
     oneLiner = { "oneLiner": oneLiner , "change": liked}
     this.sql.updateOneLinerNumUpVotes(oneLiner).subscribe(res => {
-      this.getOneLiners();
+      //this.getOneLiners();
     }, error => console.log(error))
   }
 
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       "numUpVotes": 0
     }
     this.sql.insertOneLiner(newOneLiner).subscribe(res => {
-      console.log(res)
+      this.getOneLiners();
     }, error => console.log(error))
   }
 

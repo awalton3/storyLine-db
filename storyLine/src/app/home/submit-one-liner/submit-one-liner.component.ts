@@ -31,7 +31,7 @@ export class SubmitOneLinerComponent implements OnInit {
       content: this.oneLinerForm.value.content,
       timestamp: this.datePipe.transform(new Date, 'yyyy-MM-dd HH:mm:ss')
     }
-    console.log(oneLinerObj.timestamp)
+    this._bottomSheetRef.dismiss()
     this.sql.onAddOneliner.next(oneLinerObj);
   }
 }

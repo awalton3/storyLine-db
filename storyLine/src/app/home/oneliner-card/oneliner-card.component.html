@@ -7,8 +7,9 @@
     </p>
     <!-- <span fxLayoutAlign="end center" class="one-liner-quote">"</span> -->
     <div class="votes-container" fxLayout="column" fxLayoutAlign="center center" (click)="onLike()">
-      <i class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite_border</i>
-      {{oneLiner.numUpVotes}}
+      <i *ngIf="liked" class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite</i>
+      <i *ngIf="!liked" class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite_outline</i>
+      {{ oneLiner.numUpVotes }}
     </div>
   </mat-card-content>
 </mat-card>

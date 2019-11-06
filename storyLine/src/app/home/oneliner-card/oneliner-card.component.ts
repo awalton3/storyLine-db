@@ -17,14 +17,18 @@ export class OnelinerCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.oneLiner);
+    console.log(this.liked)
+    // console.log(this.oneLiner);
   }
 
   onLike() {
-    if (this.liked == 0)
+    if (this.liked == 0) {
+      this.oneLiner.numUpVotes++
       this.liked = 1;
-    else
+    } else {
+      this.oneLiner.numUpVotes--
       this.liked = 0;
+    }
     this.onUpdateLike.next(this.liked);
   }
 
