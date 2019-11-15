@@ -1,0 +1,38 @@
+.background {
+  background-color: #800322;
+}
+
+.stories-card {
+  max-width: 850px;
+  min-width: 850px;
+  width: 300px;
+  font-family: 'Montserrat', sans-serif !important;
+  margin: 20px;
+  padding: 75px;
+}
+
+.stories-card-content {
+  font-size: 18px;
+  line-height: 30px;
+  font-family: 'Montserrat', sans-serif !important;
+  color: black;
+  white-space: pre-wrap;
+}
+
+.votes-container {
+  width: 65px;
+  height: 50px;
+  background-color: #F09F23;
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  color: #fff;
+  border-radius: 50% 0 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer
+}
+
+.votes-container-icon {
+  font-size: 18px
+}
