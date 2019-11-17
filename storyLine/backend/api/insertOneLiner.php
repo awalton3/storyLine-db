@@ -33,6 +33,10 @@ if(isset($postdata) && !empty($postdata))
       'numUpVotes' => $numUpVotes
     ];
 
+        if (mysqli_stmt_errno($stmt) != 0)
+        {
+            echo $stmt->error;
+        }
         echo json_encode($resultVar);
         mysqli_stmt_close($stmt);
         http_response_code(201);

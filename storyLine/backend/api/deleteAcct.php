@@ -2,9 +2,9 @@
 
 require 'database.php';
 
-if ($_GET['oneLiner'] !== null)
+if ($_GET['username'] !== null)
 {
-  $oneLiner = trim($_GET['oneLiner']);
+  $username = trim($_GET['username']);
 }
 else
 {
@@ -12,11 +12,11 @@ else
 }
 
 
-$stmt = mysqli_prepare($con, "delete from oneLiners where oneLiner=?");
+$stmt = mysqli_prepare($con, "delete from accounts where username=?");
 
 if ($stmt)
 {
-  mysqli_stmt_bind_param($stmt, "s", $oneLiner);
+  mysqli_stmt_bind_param($stmt, "s", $username);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
   http_response_code(200);

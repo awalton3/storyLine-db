@@ -2,9 +2,9 @@
 
 require 'database.php';
 
-if ($_GET['oneLiner'] !== null)
+if ($_GET['storyHashID'] !== null)
 {
-  $oneLiner = trim($_GET['oneLiner']);
+  $storyHashID = trim($_GET['storyHashID']);
 }
 else
 {
@@ -12,11 +12,11 @@ else
 }
 
 
-$stmt = mysqli_prepare($con, "delete from oneLiners where oneLiner=?");
+$stmt = mysqli_prepare($con, "delete from stories where storyHashID=?");
 
 if ($stmt)
 {
-  mysqli_stmt_bind_param($stmt, "s", $oneLiner);
+  mysqli_stmt_bind_param($stmt, "s", $storyHashID);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
   http_response_code(200);
