@@ -13,12 +13,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { DatePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 /* Child components */
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { OnelinerCardComponent } from './home/oneliner-card/oneliner-card.component';
 import { SubmitOneLinerComponent } from './home/submit-one-liner/submit-one-liner.component';
+import { StoriesComponent } from './home/stories/stories.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { SubmitOneLinerComponent } from './home/submit-one-liner/submit-one-line
     LoginComponent,
     HomeComponent,
     OnelinerCardComponent,
-    SubmitOneLinerComponent
+    SubmitOneLinerComponent,
+    StoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { SubmitOneLinerComponent } from './home/submit-one-liner/submit-one-line
     HttpClientModule,
     MatCardModule,
     MatBottomSheetModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatGridListModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
