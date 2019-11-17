@@ -22,19 +22,19 @@ if(isset($postdata) && !empty($postdata))
 
     $stories = [];
     $i = 0;
-    $result = mysqli_stmt_get_result($stmt);
-    while($row = mysqli_fetch_assoc($result)){ 
-        $stories[$i]['storyHashID'] = $row['storyHashID'];
-        $stories[$i]['oneLiner'] = $row['oneLiner'];
-        $stories[$i]['requiresReview'] = $row['requiresReview'];
-        $stories[$i]['sensitiveContent'] = $row[''sensitiveContent];
-        $stories[$i]['numViews'] = $row['numViews'];
-        $stories[$i]['writtenAnon'] = $row['writtenAnon'];
-        $stories[$i]['content'] = $row['content'];
-        $stories[$i]['estReadTime'] = $row['estReadTime'];
-        $stories[$i]['timestamp'] = $row['timestamp'];
-        $stories[$i]['authorUsername'] = $row['authorUsername'];
-        $stories[$i]['numUpVotes'] = $row['numUpVotes'];
+    $result = mysqli_stmt_bind_result($stmt, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $c8, $c9, $c10, $c11);
+    while (mysqli_stmt_fetch($stmt)) {
+        $stories[$i]['storyHashID'] = $c1;
+        $stories[$i]['oneLiner'] = $c2;
+        $stories[$i]['requiresReview'] = $c3;
+        $stories[$i]['sensitiveContent'] = $c4;
+        $stories[$i]['numViews'] = $c5;
+        $stories[$i]['writtenAnon'] = $c6;
+        $stories[$i]['content'] = $c7;
+        $stories[$i]['estReadTime'] = $c8;
+        $stories[$i]['timestamp'] = $c9;
+        $stories[$i]['authorUsername'] = $c10;
+        $stories[$i]['numUpVotes'] = $c11;
         $i++;
     }
     echo json_encode($stories);

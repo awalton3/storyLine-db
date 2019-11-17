@@ -22,10 +22,10 @@ if(isset($postdata) && !empty($postdata))
 
     $stories = [];
     $i = 0;
-    $result = mysqli_stmt_get_result($stmt);
-    while($row = mysqli_fetch_assoc($result)){ 
-        $stories[$i]['authorUsername'] = $row['authorUsername'];
-        $stories[$i]['storyHashID'] = $row['storyHashID'];
+    $result = mysqli_stmt_bind_result($stmt, $c1, $c2);
+    while (mysqli_stmt_fetch($stmt)) {
+        $stories[$i]['authorUsername'] = $c1;
+        $stories[$i]['storyHashID'] = $c2;
         $i++;
     }
     echo json_encode($stories);
