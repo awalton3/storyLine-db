@@ -14,6 +14,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class HomeComponent implements OnInit, OnDestroy {
 
   oneLiners: any;
+  selectedStories: any;
+  selectedOneliner: string;
+
   constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet, private _toolbar: MatToolbarModule) { }
   private subs: Subscription = new Subscription();
 
@@ -64,6 +67,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subs.add(this.sql.deleteOneLiner({ "oneLiner": oldOneLiner }).subscribe(res => {
       this.getOneLiners();
     }, error => console.log(error)))
+  }
+
+  fetchStories(oneLinerObj) {
+    this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
+      this.selectedStories = res;
+      this.selectedOneliner = oneLinerObj.oneLiner
+      window.scrollTo(0,0)
+    }))
   }
 
   ngOnDestroy() {

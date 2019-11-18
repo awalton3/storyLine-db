@@ -14,6 +14,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { DatePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 /* Child components */
 import { LoginComponent } from './login/login.component';
@@ -42,7 +43,8 @@ import { StoriesComponent } from './home/stories/stories.component';
     MatCardModule,
     MatBottomSheetModule,
     MatToolbarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSidenavModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

@@ -34,4 +34,5 @@ export class SubmitOneLinerComponent implements OnInit {
     this._bottomSheetRef.dismiss()
     this.sql.onAddOneliner.next(oneLinerObj);
   }
+  
 }

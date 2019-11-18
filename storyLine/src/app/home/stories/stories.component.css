@@ -1,20 +1,25 @@
-.background {
-  background-color: #800322;
-}
-
 .stories-card {
   max-width: 850px;
   min-width: 850px;
   width: 300px;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'PT Serif', serif;
   margin: 20px;
   padding: 75px;
+}
+
+.profile-image {
+  background-color: #ab0a4a;
+  width: 70px;
+  height: 70px;
+  border-radius: 50% 50%;
+  margin-right: 35px;
 }
 
 .stories-card-content {
   font-size: 18px;
   line-height: 30px;
-  font-family: 'Montserrat', sans-serif !important;
+  /* font-family: 'PT Serif', serif; */
+  font-family: 'Noto Serif KR', serif;
   color: black;
   white-space: pre-wrap;
 }
@@ -28,6 +33,7 @@
   right: 0;
   color: #fff;
   border-radius: 50% 0 0 0;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer

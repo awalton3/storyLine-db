@@ -4,6 +4,7 @@
   width: 300px;
   font-family: 'Montserrat', sans-serif !important;
   margin: 20px;
+  cursor: pointer; 
 }
 
 .one-liner-card-content {

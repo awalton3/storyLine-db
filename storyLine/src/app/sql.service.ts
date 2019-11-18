@@ -30,4 +30,8 @@ export class SQLService {
     return this.http.delete(`${this.baseUrl}/deleteOneLiner.php/?oneLiner=${oneLinerObj['oneLiner']}`);
   }
 
+  selectStoryByOneLiner(oneLinerObj) {
+    return this.http.put(`${this.baseUrl}/selectStoryByOneLiner.php`, oneLinerObj)
+  }
+
 }

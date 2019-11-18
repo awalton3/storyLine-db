@@ -4,6 +4,11 @@
   z-index: 1000;
 }
 
+.stories-drawer {
+  width: 100VW;
+  background-color: #800322;
+}
+
 .container {
   padding-top: 100px;
   background-color: #800322;
@@ -25,4 +30,18 @@
 
 .logo--width {
   width: 250px
+}
+
+.trailing-oneliner {
+  position: fixed;
+  top: 40;
+  left: 0;
+  z-index: 1000;
+  width: 150px;
+  /* height: 50vh; */
+  color: #fff;
+  font-family: 'PT Serif', serif;
+  font-size: 55px;
+  font-weight: 600;
+  padding: 50px;
 }

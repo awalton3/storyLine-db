@@ -1,21 +1,39 @@
 <mat-toolbar class="toolbar">
 
-  <div fxLayout="row" fxLayoutAlign="space-between center" class="bar-container">
+  <div fxLayout="row" fxLayoutAlign="start center" class="bar-container">
     <img class="logo-short" src="assets/storyLine-logo-short.png">
     <img class="logo--width" src="assets/storyLine-logo-white.png" fxLayoutAlign="center center">
+    <!-- <p>"If I became a property developer that evening, the night my daughter disappeared, I'd be in jail instead of standing here before you all," he shouted in rage, pounding his fists vehemently on the weathered, oak-wood podium.</p> -->
+    <!-- <p>We are going to need a bigger boat.</p> -->
     <div class="spanner"></div>
   </div>
 
 </mat-toolbar>
 
-<div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
+<mat-drawer-container>
+  <mat-drawer class="stories-drawer container" position="end" #drawer [mode]="Over">
+    <div fxLayout="row" fxLayoutAlign="center start">
+      <div class="trailing-oneliner"> {{ selectedOneliner }}</div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
+      </div>
+      <div class="bottom-right-fab" (click)="onSubmitOneliner()">
+        <button mat-fab color="accent">
+          <i class="material-icons" fxLayoutAlign="center center" style="color: white">edit</i>
+        </button>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
 
-  <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike($event, oneLinerEl.oneLiner)" (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
+      <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" (click)="fetchStories(oneLinerEl); drawer.open()" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike($event, oneLinerEl.oneLiner)" (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
 
-  <div class="bottom-right-fab" (click)="onSubmitOneliner()">
-    <button mat-fab color="accent">
-      <i class="material-icons" fxLayoutAlign="center center" style="color: white">add</i>
-    </button>
-  </div>
-
-</div>
+      <div class="bottom-right-fab" (click)="onSubmitOneliner()">
+        <button mat-fab color="accent">
+          <i class="material-icons" fxLayoutAlign="center center" style="color: white">add</i>
+        </button>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

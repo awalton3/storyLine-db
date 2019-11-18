@@ -23,11 +23,11 @@ if(isset($postdata) && !empty($postdata))
     $stories = [];
     $i = 0;
     $result = mysqli_stmt_get_result($stmt);
-    while($row = mysqli_fetch_assoc($result)){ 
+    while($row = mysqli_fetch_assoc($result)){
         $stories[$i]['storyHashID'] = $row['storyHashID'];
         $stories[$i]['oneLiner'] = $row['oneLiner'];
         $stories[$i]['requiresReview'] = $row['requiresReview'];
-        $stories[$i]['sensitiveContent'] = $row[''sensitiveContent];
+        $stories[$i]['sensitiveContent'] = $row['sensitiveContent'];
         $stories[$i]['numViews'] = $row['numViews'];
         $stories[$i]['writtenAnon'] = $row['writtenAnon'];
         $stories[$i]['content'] = $row['content'];
@@ -48,4 +48,3 @@ if(isset($postdata) && !empty($postdata))
   }
 
 }
-
