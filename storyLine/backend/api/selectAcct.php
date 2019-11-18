@@ -22,12 +22,12 @@ if(isset($postdata) && !empty($postdata))
 
     $accounts = [];
     $i = 0;
-    $result = mysqli_stmt_get_result($stmt);
-    while($row = mysqli_fetch_assoc($result)){
-        $accounts[$i]['username'] = $row['username'];
-        $accounts[$i]['email'] = $row['email'];
-        $accounts[$i]['displayName'] = $row['displayName'];
-        $accounts[$i]['hashedPassword'] = $row['hashedPassword'];
+    $result = mysqli_stmt_bind_result($stmt, $c1, $c2, $c3, $c4);
+    while (mysqli_stmt_fetch($stmt)) {
+        $accounts[$i]['username'] = $c1;
+        $accounts[$i]['email'] = $c2;
+        $accounts[$i]['displayName'] = $c3;
+        $accounts[$i]['hashedPassword'] = $c4;
         $i++;
     }
     echo json_encode($accounts);
