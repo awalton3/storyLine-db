@@ -11,7 +11,7 @@ if(isset($postdata) && !empty($postdata))
   $oneLiner = trim($request->oneLiner);
   $requiresReview = (int)$request->requiresReview;
   $sensitiveContent = (int)$request->sensitiveContent;
-  $numViews = (int)trim($request->numViews;
+  $numViews = (int)trim($request->numViews);
   $writtenAnon = (int)$request->writtenAnon;
   $content = trim($request->content);
   $estReadTime = (int)$request->estReadTime;
@@ -29,6 +29,7 @@ if(isset($postdata) && !empty($postdata))
     if (mysqli_stmt_errno($stmt) != 0)
     {
         echo $stmt->error;
+        echo $storyHashID;
     }
 
     mysqli_stmt_close($stmt);
@@ -40,4 +41,3 @@ if(isset($postdata) && !empty($postdata))
   }
 
 }
-

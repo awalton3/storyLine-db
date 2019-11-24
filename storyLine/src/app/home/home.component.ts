@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getOneLiners();
     this.listenForOneLiners();
+    this.listenForStories();
   }
 
   getOneLiners() {
@@ -35,6 +36,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   listenForOneLiners() {
     this.subs.add(this.sql.onAddOneliner.subscribe(newOneLinerObj => {
       this.addOneLiner(newOneLinerObj)
+    }))
+  }
+
+  listenForStories() {
+    this.subs.add(this.sql.onInsertStory.subscribe(storyObj => {
+      console.log(storyObj)
+      this.fetchStories(storyObj)
     }))
   }
 
@@ -52,7 +60,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onAddStory() {
     console.log("onAddStory was clicked")
-    this._bottomSheet.open(SubmitStoryComponent);
+    this._bottomSheet.open(SubmitStoryComponent, {
+      data : {
+        oneLiner: this.selectedOneliner
+      }
+    });
   }
 
   addOneLiner(newOneLiner) {

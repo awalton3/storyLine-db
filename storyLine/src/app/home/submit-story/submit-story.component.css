@@ -1,0 +1,6 @@
+::ng-deep .mat-bottom-sheet-container {
+  max-height: 95vh !important;
+  max-width: 95vw !important;
+  height: 95vh !important;
+  width: 95vw !important;
+}

@@ -11,6 +11,7 @@ export class SQLService {
 
   baseUrl = 'http://db.cse.nd.edu:4201'
   onAddOneliner = new Subject<any>();
+  onInsertStory = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +20,12 @@ export class SQLService {
   }
 
   insertOneLiner(oneLinerObj): any {
+    console.log('In insertOneLiner');
     return this.http.post(`${this.baseUrl}/insertOneLiner.php`, oneLinerObj);
+  }
+
+  insertStory(storyObj): any {
+    return this.http.post(`${this.baseUrl}/insertStory.php`, storyObj);
   }
 
   updateOneLinerNumUpVotes(oneLinerObj): any {
