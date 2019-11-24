@@ -1,0 +1,13 @@
+<mat-toolbar class="toolbar">
+
+  <div fxLayout="row" fxLayoutAlign="start center" class="bar-container">
+    <img class="logo-short" src="assets/storyLine-logo-short.png">
+    <img *ngIf="!content" class="logo--width" src="assets/storyLine-logo-white.png" fxLayoutAlign="center center">
+    <p *ngIf="content">{{content}}</p>
+    <div (click)="onDismiss()" class="close">
+    <i *ngIf="content" class="material-icons">close</i>
+    </div>
+    <div class="spanner"></div>
+  </div>
+
+</mat-toolbar>

@@ -23,6 +23,7 @@ import { OnelinerCardComponent } from './home/oneliner-card/oneliner-card.compon
 import { SubmitOneLinerComponent } from './home/submit-one-liner/submit-one-liner.component';
 import { StoriesComponent } from './home/stories/stories.component';
 import { SubmitStoryComponent } from './home/submit-story/submit-story.component';
+import { ToolbarComponent } from './home/toolbar/toolbar.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SubmitStoryComponent } from './home/submit-story/submit-story.component
     OnelinerCardComponent,
     SubmitOneLinerComponent,
     StoriesComponent,
-    SubmitStoryComponent
+    SubmitStoryComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
