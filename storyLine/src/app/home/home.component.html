@@ -1,14 +1,4 @@
-<mat-toolbar class="toolbar">
-
-  <div fxLayout="row" fxLayoutAlign="start center" class="bar-container">
-    <img class="logo-short" src="assets/storyLine-logo-short.png">
-    <img class="logo--width" src="assets/storyLine-logo-white.png" fxLayoutAlign="center center">
-    <!-- <p>"If I became a property developer that evening, the night my daughter disappeared, I'd be in jail instead of standing here before you all," he shouted in rage, pounding his fists vehemently on the weathered, oak-wood podium.</p> -->
-    <!-- <p>We are going to need a bigger boat.</p> -->
-    <div class="spanner"></div>
-  </div>
-
-</mat-toolbar>
+<app-toolbar [content]="toolbarContent" (onDismissDrawer)= "toolbarContent = null; drawer.close()"></app-toolbar>
 
 <mat-drawer-container>
 
@@ -29,7 +19,7 @@
   <mat-drawer-content>
     <div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
 
-      <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" (onSelect)="fetchStories(oneLinerEl); drawer.open()" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike($event, oneLinerEl.oneLiner)" (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
+      <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" (onSelect)="fetchStories(oneLinerEl); toolbarContent = oneLinerEl.oneLiner; drawer.open()" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike($event, oneLinerEl.oneLiner)" (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
 
       <div class="bottom-right-fab" (click)="onSubmitOneliner()">
         <button mat-fab color="accent">

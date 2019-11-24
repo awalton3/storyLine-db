@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   oneLiners: any;
   selectedStories: any;
   selectedOneliner: string;
+  toolbarContent: string;
 
   constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet, private _toolbar: MatToolbarModule) { }
   private subs: Subscription = new Subscription();
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getOneLiners();
     this.listenForOneLiners();
+    this.toolbarContent = null;
   }
 
   getOneLiners() {
@@ -76,11 +78,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   fetchStories(oneLinerObj) {
+
+
+
     this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
       this.selectedStories = res;
       this.selectedOneliner = oneLinerObj.oneLiner
       window.scrollTo(0,0)
-    }))
+    }))  
   }
 
   ngOnDestroy() {
