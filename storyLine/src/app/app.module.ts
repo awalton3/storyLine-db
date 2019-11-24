@@ -22,6 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { OnelinerCardComponent } from './home/oneliner-card/oneliner-card.component';
 import { SubmitOneLinerComponent } from './home/submit-one-liner/submit-one-liner.component';
 import { StoriesComponent } from './home/stories/stories.component';
+import { SubmitStoryComponent } from './home/submit-story/submit-story.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { StoriesComponent } from './home/stories/stories.component';
     HomeComponent,
     OnelinerCardComponent,
     SubmitOneLinerComponent,
-    StoriesComponent
+    StoriesComponent,
+    SubmitStoryComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,6 @@ import { StoriesComponent } from './home/stories/stories.component';
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [SubmitOneLinerComponent]
+  entryComponents: [SubmitOneLinerComponent, SubmitStoryComponent]
 })
 export class AppModule { }

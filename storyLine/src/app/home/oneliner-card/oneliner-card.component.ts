@@ -11,6 +11,7 @@ export class OnelinerCardComponent implements OnInit {
   @Input() oneLiner : any;
   @Output() onUpdateLike = new Subject<Number>();
   @Output() onDeleteOneLiner = new Subject();
+  @Output() onSelect = new Subject(); 
   username = sessionStorage.getItem('username');
   liked = 0;
 

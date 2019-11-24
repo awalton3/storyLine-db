@@ -4,6 +4,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.component';
 import { Subscription } from 'rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { SubmitStoryComponent } from './submit-story/submit-story.component';
 
 @Component({
   selector: 'app-home',
@@ -47,6 +48,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSubmitOneliner() {
     this._bottomSheet.open(SubmitOneLinerComponent);
+  }
+
+  onAddStory() {
+    console.log("onAddStory was clicked")
+    this._bottomSheet.open(SubmitStoryComponent);
   }
 
   addOneLiner(newOneLiner) {

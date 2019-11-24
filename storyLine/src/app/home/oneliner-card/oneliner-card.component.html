@@ -1,15 +1,19 @@
 <mat-card fxFlex class="one-liner-card">
+
   <mat-card-content>
-    <i (click)="onDelete()" *ngIf="oneLiner.authorUsername === username" class="material-icons" style="color: grey; cursor: pointer">close</i>
-    <!-- <span fxLayoutAlign="start start" class="one-liner-quote">"</span> -->
-    <p class="one-liner-card-content">
-      {{oneLiner.oneLiner}}
-    </p>
-    <!-- <span fxLayoutAlign="end center" class="one-liner-quote">"</span> -->
+
+    <div (click)="onSelect.next()">
+      <i (click)="onDelete()" *ngIf="oneLiner.authorUsername === username" class="material-icons" style="color: grey; cursor: pointer">close</i>
+      <p class="one-liner-card-content">
+        {{oneLiner.oneLiner}}
+      </p>
+    </div>
+
     <div class="votes-container" fxLayout="column" fxLayoutAlign="center center" (click)="onLike()">
       <i *ngIf="liked" class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite</i>
       <i *ngIf="!liked" class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite_outline</i>
       {{ oneLiner.numUpVotes }}
     </div>
+
   </mat-card-content>
 </mat-card>

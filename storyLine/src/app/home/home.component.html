@@ -11,23 +11,25 @@
 </mat-toolbar>
 
 <mat-drawer-container>
+
   <mat-drawer class="stories-drawer container" position="end" #drawer [mode]="Over">
     <div fxLayout="row" fxLayoutAlign="center start">
       <div class="trailing-oneliner"> {{ selectedOneliner }}</div>
       <div fxLayout="column" fxLayoutAlign="center center">
         <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
       </div>
-      <div class="bottom-right-fab" (click)="onSubmitOneliner()">
+      <div class="bottom-right-fab" (click)="onAddStory()">
         <button mat-fab color="accent">
           <i class="material-icons" fxLayoutAlign="center center" style="color: white">edit</i>
         </button>
       </div>
     </div>
   </mat-drawer>
+
   <mat-drawer-content>
     <div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
 
-      <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" (click)="fetchStories(oneLinerEl); drawer.open()" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike($event, oneLinerEl.oneLiner)" (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
+      <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" (onSelect)="fetchStories(oneLinerEl); drawer.open()" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike($event, oneLinerEl.oneLiner)" (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
 
       <div class="bottom-right-fab" (click)="onSubmitOneliner()">
         <button mat-fab color="accent">
@@ -36,4 +38,5 @@
       </div>
     </div>
   </mat-drawer-content>
+
 </mat-drawer-container>
