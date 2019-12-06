@@ -4,7 +4,7 @@
 
   <mat-drawer class="stories-drawer container" position="end" #drawer [mode]="Over">
     <div fxLayout="row" fxLayoutAlign="center start">
-      <div class="trailing-oneliner"> {{ selectedOneliner }}</div>
+      <!--<div class="trailing-oneliner"> {{ selectedOneliner }}</div> -->
       <div fxLayout="column" fxLayoutAlign="center center">
         <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
       </div>

@@ -4,3 +4,7 @@
   height: 95vh !important;
   width: 95vw !important;
 }
+
+.check {
+  cursor: pointer;
+}
