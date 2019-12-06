@@ -8,6 +8,7 @@ if(isset($postdata) && !empty($postdata))
   $request = json_decode($postdata);
 
   $username = trim($request->username);
+  $hashedPwd = hash("sha256", trim($request->plaintextPwd));
 
   $stmt = mysqli_prepare($con, "select * from accounts where username=?");
 
@@ -27,6 +28,14 @@ if(isset($postdata) && !empty($postdata))
         $accounts[$i]['username'] = $c1;
         $accounts[$i]['email'] = $c2;
         $accounts[$i]['displayName'] = $c3;
+        if ($hashedPwd === $c4)
+        {
+            $accounts[$i]['valid'] = 1;
+        }
+        else
+        {
+            $accounts[$i]['valid'] = 0;
+        }
         $accounts[$i]['hashedPassword'] = $c4;
         $i++;
     }
