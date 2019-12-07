@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { MyStoriesComponent } from './my-stories/my-stories.component';
+import { AppContentComponent } from './app-content/app-content.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'app', component: AppContentComponent },
       { path: 'home', component: HomeComponent },
       { path: 'home/stories', component: StoriesComponent },
       { path: 'profile', component: ProfileComponent },
