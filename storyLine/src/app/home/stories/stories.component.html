@@ -1,5 +1,5 @@
 <mat-card fxFlex class="stories-card">
-  
+
   <mat-card-content>
 
     <div class="stories-card-header" fxLayout="row" fxLayoutAlign="start start">
@@ -9,6 +9,10 @@
         <p>{{story.timestamp}}</p>
       </div>
     </div>
+    <div class="bookmark-container" (click)="onBookmark()">
+      <i *ngIf="!bookmarked" class="bookmark-container-icon material-icons">bookmark_border</i>
+      <i *ngIf="bookmarked" class="bookmark-container-icon material-icons">bookmark</i>
+    </div>
 
     <p class="stories-card-content">
       {{story.content}}
@@ -17,6 +21,7 @@
       <i class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite</i>
     10
     </div>
+
   </mat-card-content>
 
 </mat-card>
