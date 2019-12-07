@@ -4,6 +4,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { StoriesComponent } from './home/stories/stories.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { MyStoriesComponent } from './my-stories/my-stories.component';
 
 
 const routes: Routes = [
@@ -14,6 +17,9 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },
       { path: 'home/stories', component: StoriesComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'bookmarks', component: BookmarksComponent },
+      { path: 'my-stories', component: MyStoriesComponent },
       { path: '**', redirectTo: 'login', pathMatch: 'full' }
 
     ]

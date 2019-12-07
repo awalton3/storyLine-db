@@ -3,8 +3,10 @@ import { SQLService } from '../sql.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.component';
 import { Subscription } from 'rxjs';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { SubmitStoryComponent } from './submit-story/submit-story.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-home',
@@ -90,14 +92,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   fetchStories(oneLinerObj) {
-
-
-
     this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
       this.selectedStories = res;
       this.selectedOneliner = oneLinerObj.oneLiner
       window.scrollTo(0,0)
-    }))  
+    }))
   }
 
   ngOnDestroy() {

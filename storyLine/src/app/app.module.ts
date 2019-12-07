@@ -15,6 +15,8 @@ import { DatePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 /* Child components */
 import { LoginComponent } from './login/login.component';
@@ -24,6 +26,9 @@ import { SubmitOneLinerComponent } from './home/submit-one-liner/submit-one-line
 import { StoriesComponent } from './home/stories/stories.component';
 import { SubmitStoryComponent } from './home/submit-story/submit-story.component';
 import { ToolbarComponent } from './home/toolbar/toolbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { MyStoriesComponent } from './my-stories/my-stories.component';
 
 
 @NgModule({
@@ -35,7 +40,10 @@ import { ToolbarComponent } from './home/toolbar/toolbar.component';
     SubmitOneLinerComponent,
     StoriesComponent,
     SubmitStoryComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ProfileComponent,
+    BookmarksComponent,
+    MyStoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +56,9 @@ import { ToolbarComponent } from './home/toolbar/toolbar.component';
     MatBottomSheetModule,
     MatToolbarModule,
     MatGridListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatButtonModule,
+    MatListModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
