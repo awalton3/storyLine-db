@@ -16,7 +16,7 @@ else
 }
 
 
-$stmt = mysqli_prepare($con, "delete from accountsReadStories where storyHashID=? and authorUsername=?");
+$stmt = mysqli_prepare($con, "delete from accountsBookmarkStories where storyHashID=? and readerUsername=?");
 
 if ($stmt)
 {

@@ -13,6 +13,22 @@
 }
 
 .content {
-  padding-top: 70px;
+  height: 100VH;
   background-color: #800322;
+}
+
+.no-stories {
+  font-weight: 500;
+  font-size: 45px;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #ffff;
+}
+
+.stories-list {
+  padding-top: 100px;
+  /* margin-top: 3000px; */
+}
+
+.weird-message {
+  padding-top: 35VH;
 }

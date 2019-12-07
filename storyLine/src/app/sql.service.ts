@@ -20,7 +20,6 @@ export class SQLService {
   }
 
   insertOneLiner(oneLinerObj): any {
-    console.log('In insertOneLiner');
     return this.http.post(`${this.baseUrl}/insertOneLiner.php`, oneLinerObj);
   }
 
@@ -41,8 +40,23 @@ export class SQLService {
   }
 
   getMyStories() {
-    console.log('in sql service')
     return this.http.put(`${this.baseUrl}/selectStoryByUsername.php`, {'username':sessionStorage.getItem('username')})
+  }
+
+  getBookmarked(storyHashID) {
+    console.log('in getBookmarked');
+    return this.http.put(`${this.baseUrl}/selectAcctsBookmarkStoriesByAcctAndHashID.php`, {'storyHashID':storyHashID, 'username':sessionStorage.getItem('username')})
+  }
+
+  removeBookmark(bookmarkObj) {
+    console.log('in removebookmark');
+    // return this.http.delete(`${this.baseUrl}/deleteAcctsBookmarkStories.php/?storyHashID=${bookmarkObj['storyHashID']}${bookmarkObj['authorUsername']}`);
+    return this.http.delete(`${this.baseUrl}/deleteAcctsBookmarkStories.php/?storyHashID=${bookmarkObj['storyHashID']}&authorUsername=${bookmarkObj['authorUsername']}`);
+  }
+
+  addBookmark(bookmarkObj) {
+    console.log('in addbookmark');
+    return this.http.post(`${this.baseUrl}/insertAcctsBookmarkStories.php`, bookmarkObj);
   }
 
 }

@@ -12,9 +12,24 @@
     </div>
   </mat-drawer>
 
+  <!-- <mat-drawer-content class="content" fxLayout="column" fxLayoutAlign="center center">
+    <div *ngIf="selectedStories.length" class="stories-list">
+        <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
+    </div>
+    <div *ngIf="!selectedStories.length" fxLayout="column" fxLayoutAlign="center center">
+      <p class="no-stories">The world is your napkin!<br></p>
+      <p class="no-stories">So get out there and start writing.</p>
+    </div>
+  </mat-drawer-content> -->
+
   <mat-drawer-content class="content">
-    <div fxLayout="column" fxLayoutAlign="center center">
-      <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
+    <div *ngIf="selectedStories.length" fxLayout="column" fxLayoutAlign="center center" class="stories-list">
+        <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
+    </div>
+    <div *ngIf="!selectedStories.length" fxLayout="column" fxLayoutAlign="center center" class="weird-message">
+      <p class="no-stories">The world is your napkin!<br></p>
+      <p class="no-stories">So get out there and start writing.</p>
     </div>
   </mat-drawer-content>
+
 </mat-drawer-container>
