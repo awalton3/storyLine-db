@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatListModule } from '@angular/material/list';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SnackBarService } from '../shared/snack-bar/snack-bar.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,13 +10,41 @@ import { MatListModule } from '@angular/material/list';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  user = {}
+  forgotForm: FormGroup;
+
+  constructor(
+    private snackBarService: SnackBarService,
+    private authService: AuthService,) { }
 
   ngOnInit() {
-    // this.loadProfile();
+    this.user = {
+      username: sessionStorage.getItem('username'),
+      email: sessionStorage.getItem('email')
+    }
+    this.initForm();
   }
 
-  // loadProfile() {
-  //   this.subs.add(this.sql.)
-  // }
+  initForm() {
+    this.forgotForm = new FormGroup({
+      'new': new FormControl(null, [Validators.required]),
+      'confirm': new FormControl(null, [Validators.required])
+    });
+  }
+
+  onSubmit() {
+    if (this.forgotForm.value.new !== this.forgotForm.value.confirm)
+      this.provideFeedback("Passwords must match", true)
+    else {
+      this.authService.updatePassword(this.user['username'], this.forgotForm.value.new)
+        .subscribe(res => {
+          this.provideFeedback("Password Succesfully Updated", false)
+        }, error => console.log(error))
+    }
+  }
+
+  provideFeedback(message: string, isError: boolean) {
+    this.snackBarService.onOpenSnackBar.next({ message: message, isError: isError })
+  }
+
 }

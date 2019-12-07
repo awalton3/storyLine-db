@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   clearUser() {
-    sessionStorage.clear(); 
+    sessionStorage.clear();
   }
 
   register(username: string, email: string, password: string) {
@@ -45,6 +45,13 @@ export class AuthService {
     return this.http.post(this.baseUrl + "/selectAcct.php", {
       username: username,
       plaintextPwd: password
+    })
+  }
+
+  updatePassword(username: string, newPassword: string) {
+    return this.http.post(this.baseUrl + "/updateAcctPassword.php", {
+      username: username,
+      password: newPassword
     })
   }
 

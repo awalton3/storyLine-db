@@ -4,8 +4,6 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.component';
 import { Subscription } from 'rxjs';
 import { SubmitStoryComponent } from './submit-story/submit-story.component';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,14 +17,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   selectedStories: any;
   selectedOneliner: string;
   toolbarContent: string;
-
-  constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet, private authService: AuthService, private router: Router) { }
   private subs: Subscription = new Subscription();
 
-  ngOnInit() {
+  constructor(
+    private sql: SQLService,
+    private _bottomSheet: MatBottomSheet) { }
 
-    if (!this.authService.isAuth())
-      this.router.navigate(['./login'])
+  ngOnInit() {
 
     this.getOneLiners();
     this.listenForOneLiners();

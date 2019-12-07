@@ -1,18 +1,36 @@
-<app-toolbar (onOpenSideNav)= "sidenav.open()"></app-toolbar>
-
 <mat-drawer-container>
-  <mat-drawer #sidenav [mode]="Over" class="sidenav-drawer">
-    <div>
-      <mat-nav-list>
-        <a mat-list-item [routerLink]="['/home']"><p class="sidenav-text">FEED</p></a>
-        <a mat-list-item [routerLink]="['/my-stories']"><p class="sidenav-text">STORIES</p></a>
-        <a mat-list-item [routerLink]="['/profile']"><p class="sidenav-text">PROFILE</p></a>
-        <a mat-list-item [routerLink]="['/bookmarks']"><p class="sidenav-text">BOOKMARKS</p></a>
-      </mat-nav-list>
-    </div>
+
+  <mat-drawer #imageEditor mode="over" position="end" class="side-content-drawer">
+    <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" class="toolbar-editor-container">
+      <i class="material-icons toolbar-icon">close</i>
+      <p class="toolbar-text">Select Image</p>
+      <span></span>
+    </mat-toolbar>
   </mat-drawer>
 
-  <mat-drawer-content>
-    <!-- <p class="big-text">Hey, {{username}}!</p> -->
+  <mat-drawer-content class="background-base heightFull" fxLayout="column" fxLayoutAlign="center center">
+    <p class="title">Hi, {{ user.username }}</p>
+    <div class="profile-image-container-large profile-image-click" style="background-image: url(https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80)">
+      <div (click)="imageEditor.open()" class="profile-image-add">
+        <i fxLayoutAlign="center center" class="material-icons profile-image-add-icon">add</i>
+      </div>
+    </div>
+    <br>
+    <br>
+    <!-- <p class="username">{{ user.username }}</p>
+      <p class="email">{{ user.email }}</p>  -->
+    <p class="forgot" fxLayout="row" fxLayoutAlign="start start">Update Password</p>
+    <form [formGroup]="forgotForm" fxLayout="column" fxLayoutAlign="center center">
+      <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
+        <input matInput formControlName="new" type="password" placeholder="New password" class="auth-input-field" fxLayoutAlign="center center">
+        <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">lock</i></span>
+      </mat-form-field>
+      <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
+        <input matInput formControlName="confirm" type="password" placeholder="Confirm" class="auth-input-field" fxLayoutAlign="center center">
+        <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">lock</i></span>
+      </mat-form-field>
+      <button (click)="onSubmit()" mat-raised-button color="accent" class="action-button">UPDATE</button>
+    </form>
   </mat-drawer-content>
+
 </mat-drawer-container>

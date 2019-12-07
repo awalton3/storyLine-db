@@ -4,6 +4,8 @@ import { SnackBarService } from './shared/snack-bar/snack-bar.service';
 import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,9 +17,17 @@ export class AppComponent {
 
   private subs = new Subscription();
 
-  constructor(private sql: SQLService, private snackBarService: SnackBarService, private snackBar: MatSnackBar) {}
+  constructor(
+    private sql: SQLService,
+    private snackBarService: SnackBarService,
+    private snackBar: MatSnackBar,
+    private authService: AuthService,
+    private router: Router) {}
 
   ngOnInit() {
+    if (!this.authService.isAuth())
+      this.router.navigate(['./login'])
+      
     this.listenForSnackBarOpen();
     this.listenForSnackBarClose();
   }
