@@ -10,7 +10,7 @@ if(isset($postdata) && !empty($postdata))
   $request = json_decode($postdata);
 
   $username = trim($request->username);
-  $email = (int)$request->email;
+  $email = trim($request->email);
   $displayName = trim($request->displayName);
   $hashedPassword = hash("sha256", trim($request->password));
 
@@ -32,7 +32,7 @@ if(isset($postdata) && !empty($postdata))
         }
         mysqli_stmt_close($stmt);
         http_response_code(201);
-        
+
     }
     else
     {

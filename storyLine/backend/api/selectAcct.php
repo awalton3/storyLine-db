@@ -37,6 +37,7 @@ if(isset($postdata) && !empty($postdata))
             $accounts[$i]['valid'] = 0;
         }
         $accounts[$i]['hashedPassword'] = $c4;
+        $accounts[$i]['newhash'] = $hashedPwd;
         $i++;
     }
     echo json_encode($accounts);
@@ -50,4 +51,3 @@ if(isset($postdata) && !empty($postdata))
   }
 
 }
-
