@@ -24,6 +24,8 @@ import { SubmitOneLinerComponent } from './home/submit-one-liner/submit-one-line
 import { StoriesComponent } from './home/stories/stories.component';
 import { SubmitStoryComponent } from './home/submit-story/submit-story.component';
 import { ToolbarComponent } from './home/toolbar/toolbar.component';
+import { RegisterComponent } from './register/register.component';
+import { SnackBarModule } from './shared/snack-bar/snack-bar.module';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { ToolbarComponent } from './home/toolbar/toolbar.component';
     SubmitOneLinerComponent,
     StoriesComponent,
     SubmitStoryComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { ToolbarComponent } from './home/toolbar/toolbar.component';
     MatBottomSheetModule,
     MatToolbarModule,
     MatGridListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    SnackBarModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

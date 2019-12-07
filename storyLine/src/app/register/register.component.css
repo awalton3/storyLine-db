@@ -1,0 +1,84 @@
+.logo--width {
+  width: 300px;
+}
+
+.logo-short {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 140px;
+}
+
+.auth-input{
+  background-color: #91093f;
+  border-radius: 33.5px;
+  font-size: 14px;
+  width: 320px;
+  height: 38px;
+  margin-bottom: 13px;
+  padding-left: 25px;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.auth-input-field {
+  color: #eee;
+  margin-top: -4px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  caret-color: #eee !important;
+}
+
+.auth-input-field-icon {
+  color: #6b062f;
+  font-size: 17px;
+  padding-right: 12px;
+}
+
+.auth-input-field-forgot {
+  color: #6b062f;
+  font-size: 17px;
+  margin-left: 50px;
+  cursor: pointer !important;
+}
+
+.auth-switch-prompt {
+  color: white;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 320px) {
+  .auth-input {
+    width: 250px;
+  }
+  .auth-input-field-forgot{
+    margin-left: -12px;
+  }
+}
+
+:host ::ng-deep .mat-form-field-underline, ::ng-deep .mat-form-field-ripple {
+  height: 0px !important;
+}
+
+:host ::ng-deep .mat-form-field-label {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500 !important;
+  color: #6B062F !important;
+  top: 12px !important;
+}
+
+:host ::ng-deep .mat-focused .mat-form-field-label {
+  display: none !important;
+}
+
+/* fix chrome autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+
+{
+    -webkit-box-shadow: 0 0 0px 1000px #91093f inset !important;
+    -webkit-text-fill-color: #eee !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+  }

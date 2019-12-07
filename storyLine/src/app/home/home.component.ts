@@ -5,6 +5,8 @@ import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.com
 import { Subscription } from 'rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { SubmitStoryComponent } from './submit-story/submit-story.component';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,14 +21,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   selectedOneliner: string;
   toolbarContent: string;
 
-  constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet, private _toolbar: MatToolbarModule) { }
+  constructor(private sql: SQLService, private _bottomSheet: MatBottomSheet, private authService: AuthService, private router: Router) { }
   private subs: Subscription = new Subscription();
 
   ngOnInit() {
+
+    if (!this.authService.isAuth())
+      this.router.navigate(['./login'])
+
     this.getOneLiners();
     this.listenForOneLiners();
     this.listenForStories();
     this.toolbarContent = null;
+
   }
 
   getOneLiners() {
@@ -90,14 +97,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   fetchStories(oneLinerObj) {
-
-
-
     this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
       this.selectedStories = res;
       this.selectedOneliner = oneLinerObj.oneLiner
       window.scrollTo(0,0)
-    }))  
+    }))
   }
 
   ngOnDestroy() {

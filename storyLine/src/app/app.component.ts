@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { SQLService } from './sql.service';
+import { SnackBarService } from './shared/snack-bar/snack-bar.service';
+import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,28 +13,35 @@ import { SQLService } from './sql.service';
 })
 export class AppComponent {
 
-  constructor(private sql: SQLService) {
-  }
+  private subs = new Subscription();
+
+  constructor(private sql: SQLService, private snackBarService: SnackBarService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
-   //  this.sql.getOneLiners().subscribe(oneLiners => {
-   //    console.log(oneLiners)
-   //  })
-   //
-   //  var oneLinerObj = JSON.parse('{ "oneLiner":"onelinergoeshere", "numViews":"0", "writtenAnon":"0", "timestamp":"2019-09-29 03:25:08", "authorUsername":"authorusernamegoeshere", "numUpVotes":"0" }');
-   //  this.sql.insertOneLiner(oneLinerObj).subscribe(newOneLiner => {
-   //    console.log(newOneLiner)
-   //  })
-   //
-   //  var oneLinerToUpdate = JSON.parse('{"oneLiner":"onelinergoeshere"}');
-   //  this.sql.updateOneLinerNumUpVotes(oneLinerToUpdate).subscribe(res => {
-   //     console.log("oneliner updated!");
-   //  })
-   //
-   // var oneLinerToDelete = JSON.parse('{"oneLiner":"onelinergoeshere"}');
-   // this.sql.deleteOneLiner(oneLinerToDelete).subscribe(res2 => {
-   //    console.log("oneliner deleted!");
-   //  })
+    this.listenForSnackBarOpen();
+    this.listenForSnackBarClose();
+  }
+
+  listenForSnackBarOpen() {
+    this.subs.add(this.snackBarService.onOpenSnackBar.subscribe(data =>
+      this.openSnackbar({ message: data.message, isError: data.isError })));
+  }
+
+  listenForSnackBarClose() {
+    this.subs.add(this.snackBarService.onCloseSnackBar.subscribe(() => this.snackBar.dismiss()));
+  }
+
+  openSnackbar(data: any) {
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 4000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      data: data
+    })
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
 }

@@ -1,0 +1,6 @@
+<span fxLayout="row" fxLayoutAlign="start center" class="widthFullPer">
+  <i *ngIf="!data.isError" class="material-icons" style="color: #3CFF94; margin-right: 10px;">check_circle</i>
+  <i *ngIf="data.isError" class="material-icons" style="color: #FF284D; margin-right: 10px;">error</i>
+  <span style="font-family: 'Montserrat', sans-serif !important; font-size: 15px">{{ data.message }}</span>
+  <!-- <button mat-button (click)="onSnackBarClose()">RETRY</button> -->
+</span>
