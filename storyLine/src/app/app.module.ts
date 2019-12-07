@@ -15,6 +15,8 @@ import { DatePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 /* Child components */
 import { LoginComponent } from './login/login.component';
@@ -26,6 +28,9 @@ import { SubmitStoryComponent } from './home/submit-story/submit-story.component
 import { ToolbarComponent } from './home/toolbar/toolbar.component';
 import { RegisterComponent } from './register/register.component';
 import { SnackBarModule } from './shared/snack-bar/snack-bar.module';
+import { ProfileComponent } from './profile/profile.component';
+import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { MyStoriesComponent } from './my-stories/my-stories.component';
 
 
 @NgModule({
@@ -38,7 +43,10 @@ import { SnackBarModule } from './shared/snack-bar/snack-bar.module';
     StoriesComponent,
     SubmitStoryComponent,
     ToolbarComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    BookmarksComponent,
+    MyStoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +60,9 @@ import { SnackBarModule } from './shared/snack-bar/snack-bar.module';
     MatToolbarModule,
     MatGridListModule,
     MatSidenavModule,
-    SnackBarModule
+    SnackBarModule,
+    MatButtonModule,
+    MatListModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

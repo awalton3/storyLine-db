@@ -40,4 +40,9 @@ export class SQLService {
     return this.http.put(`${this.baseUrl}/selectStoryByOneLiner.php`, oneLinerObj)
   }
 
+  getMyStories() {
+    console.log('in sql service')
+    return this.http.put(`${this.baseUrl}/selectStoryByUsername.php`, {'username':sessionStorage.getItem('username')})
+  }
+
 }

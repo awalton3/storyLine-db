@@ -10,10 +10,16 @@ export class ToolbarComponent implements OnInit {
 
   @Input() content : any;
   @Output() onDismissDrawer = new Subject();
+  @Output() onOpenSideNav = new Subject();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onOpen() {
+    console.log("in onOpen");
+    this.onOpenSideNav.next()
   }
 
   onDismiss() {

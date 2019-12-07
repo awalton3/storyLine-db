@@ -3,7 +3,6 @@ import { SQLService } from '../sql.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.component';
 import { Subscription } from 'rxjs';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { SubmitStoryComponent } from './submit-story/submit-story.component';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';

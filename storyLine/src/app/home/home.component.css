@@ -3,21 +3,21 @@
   background-color: #800322;
 }
 
+.sidenav-drawer {
+  width: 30VW;
+  background-color: #800322;
+  padding-top: 100px;
+}
+
+.sidenav-text {
+  padding: 30px;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #ffff;
+}
+
 .container {
   padding-top: 100px;
   background-color: #800322;
-}
-
-.trailing-oneliner {
-  position: fixed;
-  top: 40;
-  left: 0;
-  z-index: 1000;
-  width: 150px;
-  /* height: 50vh; */
-  color: #fff;
-  font-family: 'PT Serif', serif;
-  font-size: 55px;
-  font-weight: 600;
-  padding: 50px;
 }
