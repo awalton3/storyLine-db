@@ -1,5 +1,4 @@
 <app-toolbar [content]="toolbarContent" (onOpenSideNav)= "sidenav.open()"></app-toolbar>
-<p>bookmarks works!</p>
 
 <mat-drawer-container>
   <mat-drawer #sidenav [mode]="Over" class="sidenav-drawer">
@@ -13,6 +12,14 @@
     </div>
   </mat-drawer>
 
-  <mat-drawer-content>
+  <mat-drawer-content style="background-color: #800322">
+    <div *ngIf="selectedStories.length" fxLayout="column" fxLayoutAlign="center center" class="stories-list">
+        <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
+    </div>
+    <div *ngIf="!selectedStories.length" fxLayout="column" fxLayoutAlign="center center" class="weird-message">
+      <p class="no-stories">The world is your napkin!<br></p>
+      <p class="no-stories">So get out there and start writing.</p>
+    </div>
   </mat-drawer-content>
+
 </mat-drawer-container>

@@ -59,4 +59,9 @@ export class SQLService {
     return this.http.post(`${this.baseUrl}/insertAcctsBookmarkStories.php`, bookmarkObj);
   }
 
+  getBookmarkedStories(username: string) {
+    let body = { username: username }
+    return this.http.post(this.baseUrl + "/selectAcctsBookmarkStoriesByAcct.php", body)
+  }
+
 }

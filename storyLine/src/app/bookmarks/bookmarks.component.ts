@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SQLService } from '../sql.service';
 
 @Component({
   selector: 'app-bookmarks',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookmarksComponent implements OnInit {
 
-  constructor() { }
+  selectedStories: any;
+
+  constructor(private sql: SQLService) { }
 
   ngOnInit() {
+    this.loadBookmarkedStories(); 
+  }
+
+
+  loadBookmarkedStories() {
+    this.sql.getBookmarkedStories(sessionStorage.getItem('username'))
+      .subscribe(bookmarkedStories => {
+        this.selectedStories = bookmarkedStories;
+      })
   }
 
 }
