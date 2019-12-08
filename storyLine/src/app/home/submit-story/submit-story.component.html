@@ -1,14 +1,14 @@
 <div fxLayoutAlign="space-between center" fxLayout="row">
   <span></span>
   <span></span>
-  <div class="check">
-  <i class="material-icons" (click)="onSubmitForm()">done_outline</i>
-  </div>
+  <button mat-icon-button (click)="onSubmitForm()" color="accent">
+    <i class="material-icons">done</i>
+  </button>
 </div>
 
 <form [formGroup]="storySubmitForm" class="container" fxLayout="column" fxLayoutAlign="space-between center">
   <mat-form-field floatLabel="never" fxFill>
-    <textarea matInput formControlName="content" type="text" placeholder="Alas, dumplings!" rows="30"></textarea>
+    <textarea matInput (click)="checkPlaceHolder()" formControlName="content" type="text" placeholder="{{ placeholder }}" rows="30"></textarea>
     <!-- <mat-slide-toggle>Slide me!</mat-slide-toggle> -->
   </mat-form-field>
 </form>
