@@ -38,7 +38,7 @@ export class StoriesComponent implements OnInit {
   getBookmarked() {
     console.log(this.sql.getBookmarked(this.story.storyHashID));
     this.subs.add(this.sql.getBookmarked(this.story.storyHashID).subscribe(result => {
-      if (result.bookmarked) {
+      if (result['bookmarked']) {
         this.bookmarked = 1
       }
       else {
