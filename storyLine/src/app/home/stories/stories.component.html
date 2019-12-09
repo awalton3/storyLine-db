@@ -17,9 +17,10 @@
     <p class="stories-card-content">
       {{story.content}}
     </p>
-    <div class="votes-container" fxLayout="column" fxLayoutAlign="center center">
-      <i class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite</i>
-    10
+    <div class="votes-container" fxLayout="column" fxLayoutAlign="center center" (click)="onLike()">
+        <i *ngIf="liked" class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite</i>
+        <i *ngIf="!liked" class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite_outline</i>
+    {{ story.numUpVotes }}
     </div>
 
   </mat-card-content>

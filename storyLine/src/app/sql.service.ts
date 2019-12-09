@@ -59,4 +59,20 @@ export class SQLService {
     return this.http.post(`${this.baseUrl}/insertAcctsBookmarkStories.php`, bookmarkObj);
   }
 
+  updateStoriesNumUpVotes(storyObj): any {
+    return this.http.put(`${this.baseUrl}/updateStoriesNumUpVotes.php`, storyObj);
+  }
+
+  getLiked(storyHashID) {
+      return this.http.put(`${this.baseUrl}/selectAcctsLikeStoriesByAcctAndHashID.php`, {'storyHashID':storyHashID, 'username':sessionStorage.getItem('username')})
+  }
+
+  removeLike(likeObj) {
+      return this.http.delete(`${this.baseUrl}/deleteAcctsLikeStories.php/?storyHashID=${likeObj['storyHashID']}&authorUsername=${likeObj['authorUsername']}`);
+  }
+
+  addLike(likeObj) {
+      return this.http.post(`${this.baseUrl}/insertAcctsLikeStories.php`, likeObj);
+  }
+
 }

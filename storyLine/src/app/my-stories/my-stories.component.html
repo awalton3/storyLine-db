@@ -1,4 +1,4 @@
-<app-toolbar [content]="toolbarContent" (onOpenSideNav)= "sidenav.open()"></app-toolbar>
+<app-toolbar [content]="toolbarContent" (onOpenSideNav)= "sidenav.toggle()"></app-toolbar>
 
 <mat-drawer-container>
   <mat-drawer #sidenav [mode]="Over" class="sidenav-drawer">

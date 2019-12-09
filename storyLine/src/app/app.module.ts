@@ -31,6 +31,7 @@ import { SnackBarModule } from './shared/snack-bar/snack-bar.module';
 import { ProfileComponent } from './profile/profile.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { MyStoriesComponent } from './my-stories/my-stories.component';
+import { AppContentComponent } from './app-content/app-content.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MyStoriesComponent } from './my-stories/my-stories.component';
     RegisterComponent,
     ProfileComponent,
     BookmarksComponent,
-    MyStoriesComponent
+    MyStoriesComponent,
+    AppContentComponent
   ],
   imports: [
     BrowserModule,
