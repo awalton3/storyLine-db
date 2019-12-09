@@ -4,7 +4,7 @@ require 'database.php';
 
 if ($_GET['oneliner'] !== null)
 {
-    if ($_GET['username'] !== null)
+    if ($_GET['authorUsername'] !== null)
     {
       $oneliner = trim($_GET['oneliner']);
       $authorUsername = trim($_GET['authorUsername']);
@@ -29,4 +29,3 @@ else
 {
   return http_response_code(422);
 }
-
