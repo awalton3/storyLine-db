@@ -35,6 +35,7 @@ if(isset($postdata) && !empty($postdata))
         $stories[$i]['timestamp'] = $c9;
         $stories[$i]['authorUsername'] = $c10;
         $stories[$i]['numUpVotes'] = $c11;
+        $stories['exist'] = 1;
         $i++;
     }
     echo json_encode($stories);
