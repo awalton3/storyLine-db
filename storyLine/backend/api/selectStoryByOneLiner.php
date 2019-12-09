@@ -9,7 +9,7 @@ if(isset($postdata) && !empty($postdata))
 
   $oneLiner = trim($request->oneLiner);
 
-  $stmt = mysqli_prepare($con, "select * from stories where oneLiner=?");
+  $stmt = mysqli_prepare($con, "select * from stories where oneLiner=? order by RAND()");
 
   if ($stmt)
   {

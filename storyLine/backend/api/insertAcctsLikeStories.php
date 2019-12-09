@@ -6,19 +6,15 @@ $postdata = file_get_contents("php://input");
 
 if(isset($postdata) && !empty($postdata))
 {
-  // Extract the data
   $request = json_decode($postdata);
 
   $username = trim($request->authorUsername);
   $storyHashID = trim($request->storyHashID);
 
-    $stmt = mysqli_prepare($con, "insert into accountsBookmarkStories (storyHashID,readerUsername, timestamp) values (?, ?, ?)");
+    $stmt = mysqli_prepare($con, "insert into accountsLikeStories (storyHashID,authorUsername) values (?, ?)");
     if ($stmt)
     {
-        date_default_timezone_set('America/Chicago');
-        $date_time = new DateTime();
-        $date = $date_time->format('Y-m-d H:i:s');
-        mysqli_stmt_bind_param($stmt, "sss", $storyHashID, $username, $date);
+        mysqli_stmt_bind_param($stmt, "ss", $storyHashID, $username);
         mysqli_stmt_execute($stmt);
         $resultVar = [
         'username' => $username,

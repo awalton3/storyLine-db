@@ -9,7 +9,7 @@ if(isset($postdata) && !empty($postdata))
 
   $username = trim($request->username);
 
-  $stmt = mysqli_prepare($con, "select * from accountsReadStories where username=?");
+  $stmt = mysqli_prepare($con, "select * from accountsReadStories where username=? order by RAND()");
 
   if ($stmt)
   {
@@ -39,4 +39,3 @@ if(isset($postdata) && !empty($postdata))
   }
 
 }
-
