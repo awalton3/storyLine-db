@@ -1,0 +1,34 @@
+.content {
+  height: 100VH;
+  background-color: #800322;
+}
+
+.stories-list {
+  padding-top: 100px;
+  /* margin-top: 3000px; */
+}
+
+.no-stories {
+  font-weight: 500;
+  font-size: 45px;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #ffff;
+}
+
+.weird-message {
+  padding-top: 35VH;
+}
+
+.sidenav-drawer {
+  width: 30VW;
+  background-color: #800322;
+  padding-top: 100px;
+}
+
+.sidenav-text {
+  padding: 30px;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #ffff;
+}

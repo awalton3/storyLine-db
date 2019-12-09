@@ -8,6 +8,10 @@
         <p>{{story.authorUsername}}</p>
         <p>{{story.timestamp}}</p>
       </div>
+      <div *ngIf="!me">
+          <i *ngIf="!following" class="material-icons follow" (click)="onFollow()">person_add</i>
+          <i *ngIf="following" class="material-icons follow" (click)="onFollow()">person_add_disabled</i>
+      </div>
     </div>
     <div class="bookmark-container" (click)="onBookmark()">
       <i *ngIf="!bookmarked" class="bookmark-container-icon material-icons">bookmark_border</i>
@@ -20,7 +24,7 @@
     <div class="votes-container" fxLayout="column" fxLayoutAlign="center center" (click)="onLike()">
         <i *ngIf="liked" class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite</i>
         <i *ngIf="!liked" class="material-icons votes-container-icon" fxLayoutAlign="center center">favorite_outline</i>
-    {{ story.numUpVotes }}
+    {{ story.numUpVotes  + justLiked }}
     </div>
 
   </mat-card-content>

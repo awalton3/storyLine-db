@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { MyStoriesComponent } from './my-stories/my-stories.component';
 import { AppContentComponent } from './app-content/app-content.component';
+import { FriendFeedComponent } from './friend-feed/friend-feed.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'bookmarks', component: BookmarksComponent },
       { path: 'my-stories', component: MyStoriesComponent },
+      { path: 'friend-feed', component: FriendFeedComponent},
       { path: '**', redirectTo: 'login', pathMatch: 'full' }
 
     ]

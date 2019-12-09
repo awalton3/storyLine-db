@@ -31,10 +31,6 @@ export class SQLService {
     return this.http.put(`${this.baseUrl}/updateOneLinerNumUpVotes.php`, oneLinerObj);
   }
 
-  deleteOneLiner(oneLinerObj): any {
-    return this.http.delete(`${this.baseUrl}/deleteOneLiner.php/?oneLiner=${oneLinerObj['oneLiner']}`);
-  }
-
   selectStoryByOneLiner(oneLinerObj) {
     return this.http.put(`${this.baseUrl}/selectStoryByOneLiner.php`, oneLinerObj)
   }
@@ -43,6 +39,9 @@ export class SQLService {
     return this.http.put(`${this.baseUrl}/selectStoryByUsername.php`, {'username':sessionStorage.getItem('username')})
   }
 
+  getFriendStories() {
+     return this.http.put(`${this.baseUrl}/selectFollowedStories.php`, {'username':sessionStorage.getItem('username')})
+  }
   getBookmarked(storyHashID) {
     console.log('in getBookmarked');
     return this.http.put(`${this.baseUrl}/selectAcctsBookmarkStoriesByAcctAndHashID.php`, {'storyHashID':storyHashID, 'username':sessionStorage.getItem('username')})
@@ -63,6 +62,19 @@ export class SQLService {
     return this.http.put(`${this.baseUrl}/updateStoriesNumUpVotes.php`, storyObj);
   }
 
+  getLikedOneLiner(oneLiner) {
+     return this.http.put(`${this.baseUrl}/selectAcctsLikeOneLinersByAcctAndOneLiner.php`, {'oneliner':oneLiner, 'username':sessionStorage.getItem('username')})
+  }
+
+  removeLikeOneLiner(likeObj) {
+      return this.http.delete(`${this.baseUrl}/deleteAcctsLikeOneLiners.php/?oneliner=${likeObj['oneLiner']}&authorUsername=${likeObj['authorUsername']}`);
+  }
+
+  addLikeOneLiner(likeObj) {
+      console.log(likeObj)
+      return this.http.post(`${this.baseUrl}/insertAcctsLikeOneLiners.php`, likeObj);
+  }
+
   getLiked(storyHashID) {
       return this.http.put(`${this.baseUrl}/selectAcctsLikeStoriesByAcctAndHashID.php`, {'storyHashID':storyHashID, 'username':sessionStorage.getItem('username')})
   }
@@ -75,4 +87,15 @@ export class SQLService {
       return this.http.post(`${this.baseUrl}/insertAcctsLikeStories.php`, likeObj);
   }
 
+  getFollowing(authorUsername) {
+      return this.http.put(`${this.baseUrl}/verifyFollower.php`, {'followed':authorUsername, 'follower': sessionStorage.getItem('username')})
+  }
+
+  removeFollower(followObj) {
+      return this.http.delete(`${this.baseUrl}/deleteFollowers.php/?followed=${followObj['followed']}&follower=${followObj['follower']}`);
+  }
+
+  addFollower(followObj) {
+      return this.http.post(`${this.baseUrl}/insertFollowers.php`, followObj);
+  }
 }
