@@ -86,12 +86,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, error => console.log(error))
   }
 
-  deleteOneLiner(oldOneLiner) {
-    this.subs.add(this.sql.deleteOneLiner({ "oneLiner": oldOneLiner }).subscribe(res => {
-      this.getOneLiners();
-    }, error => console.log(error)))
-  }
-
   fetchStories(oneLinerObj) {
     this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
       this.selectedStories = res;
