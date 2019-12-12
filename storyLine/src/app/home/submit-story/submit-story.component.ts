@@ -32,9 +32,6 @@ export class SubmitStoryComponent implements OnInit {
     let storyObj = {
       content: this.storySubmitForm.value.content,
       oneLiner: this.data.oneLiner,
-      requiresReview: 0,
-      sensitiveContent: 0,
-      numViews: 0,
       writtenAnon: 0,
       estReadTime: (this.storySubmitForm.value.content.length)/20,
       timestamp: this.datePipe.transform(new Date, 'yyyy-MM-dd HH:mm:ss'),
