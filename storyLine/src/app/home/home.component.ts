@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   fetchStories(oneLinerObj) {
     this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
       this.selectedStories = res;
-      if (res['exist']) {
+      if (res[0]['exist'] == 1) {
           this.storiesExist = 1;
       }
       this.selectedOneliner = oneLinerObj.oneLiner

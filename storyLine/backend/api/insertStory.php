@@ -9,9 +9,6 @@ if(isset($postdata) && !empty($postdata))
 
   $storyHashID = hash("sha256", trim($request->content));
   $oneLiner = trim($request->oneLiner);
-  $requiresReview = (int)$request->requiresReview;
-  $sensitiveContent = (int)$request->sensitiveContent;
-  $numViews = (int)trim($request->numViews);
   $writtenAnon = (int)$request->writtenAnon;
   $content = trim($request->content);
   $estReadTime = (int)$request->estReadTime;
@@ -19,11 +16,11 @@ if(isset($postdata) && !empty($postdata))
   $authorUsername = trim($request->authorUsername);
   $numUpVotes = (int)$request->numUpVotes;
 
-  $stmt = mysqli_prepare($con, "insert into stories (storyHashID,oneLiner,requiresReview,sensitiveContent,numViews,writtenAnon,content,estReadTime,timestamp,authorUsername,numUpVotes) values (?,?,?,?,?,?,?,?,?,?,?);");
+  $stmt = mysqli_prepare($con, "insert into stories (storyHashID,oneLiner,writtenAnon,content,estReadTime,timestamp,authorUsername,numUpVotes) values (?,?,?,?,?,?,?,?);");
 
   if ($stmt)
   {
-    mysqli_stmt_bind_param($stmt,"ssiiiisissi", $storyHashID,$oneLiner,$requiresReview,$sensitiveContent,$numViews,$writtenAnon,$content,$estReadTime,$timestamp,$authorUsername,$numUpVotes);
+    mysqli_stmt_bind_param($stmt,"ssisissi", $storyHashID,$oneLiner,$writtenAnon,$content,$estReadTime,$timestamp,$authorUsername,$numUpVotes);
     mysqli_stmt_execute($stmt);
 
     if (mysqli_stmt_errno($stmt) != 0)

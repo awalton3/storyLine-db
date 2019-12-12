@@ -22,14 +22,12 @@ if(isset($postdata) && !empty($postdata))
 
     $stories = [];
     $i = 0;
-    $result = mysqli_stmt_bind_result($stmt, $c1, $c2, $c3, $c4, $c5, $c6);
+    $result = mysqli_stmt_bind_result($stmt, $c1, $c2, $c3, $c4);
     while (mysqli_stmt_fetch($stmt)) {
         $stories[$i]['oneLiner'] = $c1;
-        $stories[$i]['numViews'] = $c2;
-        $stories[$i]['writtenAnon'] = $c3;
-        $stories[$i]['timestamp'] = $c4;
-        $stories[$i]['authorUsername'] = $c5;
-        $stories[$i]['numUpVotes'] = $c6;
+        $stories[$i]['timestamp'] = $c2;
+        $stories[$i]['authorUsername'] = $c3;
+        $stories[$i]['numUpVotes'] = $c4;
         $i++;
     }
     echo json_encode($stories);
@@ -43,4 +41,3 @@ if(isset($postdata) && !empty($postdata))
   }
 
 }
-
