@@ -10,7 +10,7 @@ if(isset($postdata) && !empty($postdata))
   $username = trim($request->username);
   $storyHashID = trim($request->storyHashID);
 
-  $stmt = mysqli_prepare($con, "select * from accountsBookmarkStories as A where A.storyHashID=? and A.readerUsername=? order by RAND()");
+  $stmt = mysqli_prepare($con, "select * from accountsLikeStories as A where A.storyHashID=? and A.authorUsername=? order by RAND()");
 
   if ($stmt)
   {
@@ -22,11 +22,11 @@ if(isset($postdata) && !empty($postdata))
     }
 
     $stories = [];
-    $stories['bookmarked'] = 0;
+    $stories['liked'] = 0;
     $i = 0;
-    $result = mysqli_stmt_bind_result($stmt, $c1, $c2, $c3);
+    $result = mysqli_stmt_bind_result($stmt, $c1, $c2);
     while (mysqli_stmt_fetch($stmt)) {
-        $stories['bookmarked'] = 1;
+        $stories['liked'] = 1;
     }
 
     echo json_encode($stories);

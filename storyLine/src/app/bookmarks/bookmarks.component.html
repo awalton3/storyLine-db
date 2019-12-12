@@ -1,4 +1,5 @@
-<app-toolbar [content]="toolbarContent" (onOpenSideNav)= "sidenav.open()"></app-toolbar>
+<app-toolbar [content]="toolbarContent" (onOpenSideNav)= "sidenav.toggle()"></app-toolbar>
+<p>bookmarks works!</p>
 
 <mat-drawer-container>
   <mat-drawer #sidenav [mode]="Over" class="sidenav-drawer">
@@ -8,6 +9,7 @@
         <a mat-list-item [routerLink]="['/my-stories']"><p class="sidenav-text">STORIES</p></a>
         <a mat-list-item [routerLink]="['/profile']"><p class="sidenav-text">PROFILE</p></a>
         <a mat-list-item [routerLink]="['/bookmarks']"><p class="sidenav-text">BOOKMARKS</p></a>
+        <a mat-list-item [routerLink]="['/friend-feed']"><p class="sidenav-text">FRIEND FEED</p></a>
       </mat-nav-list>
     </div>
   </mat-drawer>

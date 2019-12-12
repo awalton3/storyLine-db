@@ -1,4 +1,4 @@
-<app-toolbar [content]="toolbarContent" (onOpenSideNav)= "sidenav.open()" (onDismissDrawer)= "toolbarContent = null; drawer.close()"></app-toolbar>
+<app-toolbar [content]="toolbarContent" (onOpenSideNav)= "sidenav.toggle()" (onDismissDrawer)= "toolbarContent = null; drawer.close()"></app-toolbar>
 
 <mat-drawer-container>
   <mat-drawer #sidenav [mode]="Over" class="sidenav-drawer">
@@ -8,6 +8,7 @@
         <a mat-list-item [routerLink]="['/my-stories']"><p class="sidenav-text">STORIES</p></a>
         <a mat-list-item [routerLink]="['/profile']"><p class="sidenav-text">PROFILE</p></a>
         <a mat-list-item [routerLink]="['/bookmarks']"><p class="sidenav-text">BOOKMARKS</p></a>
+        <a mat-list-item [routerLink]="['/friend-feed']"><p class="sidenav-text">FRIEND FEED</p></a>
       </mat-nav-list>
     </div>
   </mat-drawer>
@@ -17,8 +18,12 @@
 
       <mat-drawer class="stories-drawer container" position="end" #drawer [mode]="Over">
         <div fxLayout="row" fxLayoutAlign="center start">
-          <div fxLayout="column" fxLayoutAlign="center center">
+          <div *ngIf="storiesExist" fxLayout="column" fxLayoutAlign="center center">
             <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
+          </div>
+          <div *ngIf="!storiesExist" fxLayout="column" fxLayoutAlign="center center" class="weird-message">
+            <p class="no-stories">Ah, a blank slate.<br></p>
+            <p class="no-stories">Be the first to make history.</p>
           </div>
           <div class="bottom-right-fab" (click)="onAddStory()">
             <button mat-fab color="accent">

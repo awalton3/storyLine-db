@@ -32,6 +32,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { MyStoriesComponent } from './my-stories/my-stories.component';
 import { AppContentComponent } from './app-content/app-content.component';
+import { FriendFeedComponent } from './friend-feed/friend-feed.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AppContentComponent } from './app-content/app-content.component';
     ProfileComponent,
     BookmarksComponent,
     MyStoriesComponent,
-    AppContentComponent
+    AppContentComponent,
+    FriendFeedComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ if(isset($postdata) && !empty($postdata))
 
   $username = trim($request->username);
 
-  $stmt = mysqli_prepare($con, "select * from accountsBookmarkStories as A, stories as S where A.storyHashID=S.storyHashID and A.readerUsername=?");
+  $stmt = mysqli_prepare($con, "select * from accountsBookmarkStories as A, stories as S where A.storyHashID=S.storyHashID and A.readerUsername=? order by RAND()");
 
   if ($stmt)
   {
@@ -22,7 +22,7 @@ if(isset($postdata) && !empty($postdata))
 
     $stories = [];
     $i = 0;
-    $result = mysqli_stmt_bind_result($stmt, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $c8, $c9, $c10, $c11);
+    $result = mysqli_stmt_bind_result($stmt, $c12, $c13, $c14, $c1, $c2, $c3, $c4, $c5, $c6, $c7, $c8, $c9, $c10, $c11);
     while (mysqli_stmt_fetch($stmt)) {
         $stories[$i]['storyHashID'] = $c1;
         $stories[$i]['oneLiner'] = $c2;
@@ -49,4 +49,3 @@ if(isset($postdata) && !empty($postdata))
   }
 
 }
-

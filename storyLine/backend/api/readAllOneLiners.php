@@ -3,7 +3,7 @@
 require 'database.php';
 
 $stories = [];
-$sql = "SELECT * from oneLiners";
+$sql = "SELECT * from oneLiners order by RAND()";
 
 if ($result = mysqli_query($con, $sql)) {
   $i = 0;

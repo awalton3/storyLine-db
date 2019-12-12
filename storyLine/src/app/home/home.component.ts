@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   selectedStories: any;
   selectedOneliner: string;
   toolbarContent: string;
+  storiesExist : number = 0;
   private subs: Subscription = new Subscription();
 
   constructor(
@@ -86,15 +87,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, error => console.log(error))
   }
 
-  deleteOneLiner(oldOneLiner) {
-    this.subs.add(this.sql.deleteOneLiner({ "oneLiner": oldOneLiner }).subscribe(res => {
-      this.getOneLiners();
-    }, error => console.log(error)))
-  }
-
   fetchStories(oneLinerObj) {
     this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
       this.selectedStories = res;
+      if (res['exist']) {
+          this.storiesExist = 1;
+      }
       this.selectedOneliner = oneLinerObj.oneLiner
       window.scrollTo(0,0)
     }))
