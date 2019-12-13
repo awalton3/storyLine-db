@@ -10,24 +10,18 @@ if(isset($postdata) && !empty($postdata))
   $request = json_decode($postdata);
 
   $oneLiner = trim($request->oneLiner);
-  $numViews = (int)$request->numViews;
   $writtenAnon = (int)$request->writtenAnon;
   $timestamp = trim($request->timestamp);
   $authorUsername = trim($request->authorUsername);
   $numUpVotes = (int)$request->numUpVotes;
 
-    $stmt = mysqli_prepare($con, "insert into oneLiners (oneLiner,numViews,writtenAnon,timestamp,authorUsername,numUpVotes) values (?, ?, ?, ?, ?, ?)");
+    $stmt = mysqli_prepare($con, "insert into oneLiners (oneLiner,timestamp,authorUsername,numUpVotes) values (?, ?, ?, ?)");
     if ($stmt)
     {
-        /*echo '<script>';
-  echo 'console.log('. json_encode( $ ) .')';
-  echo '</script>';*/
-        mysqli_stmt_bind_param($stmt, "siissi", $oneLiner, $numViews, $writtenAnon, $timestamp, $authorUsername, $numUpVotes);
+        mysqli_stmt_bind_param($stmt, "sssi", $oneLiner, $timestamp, $authorUsername, $numUpVotes);
         mysqli_stmt_execute($stmt);
         $resultVar = [
       'oneLiner' => $oneLiner,
-      'numViews' => $numViews,
-      'writtenAnon' => $writtenAnon,
       'timestamp' => $timestamp,
       'authorUsername' => $authorUsername,
       'numUpVotes' => $numUpVotes
@@ -40,7 +34,7 @@ if(isset($postdata) && !empty($postdata))
         echo json_encode($resultVar);
         mysqli_stmt_close($stmt);
         http_response_code(201);
-        
+
     }
     else
     {

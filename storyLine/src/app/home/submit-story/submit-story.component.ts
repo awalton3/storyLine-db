@@ -63,12 +63,18 @@ export class SubmitStoryComponent implements OnInit, AfterViewInit {
 
     let storyObj = {
       content: this.storySubmitForm.value.content,
+<<<<<<< HEAD
       oneLiner: this.sql.selectedOneliner,
       requiresReview: 0,
       sensitiveContent: 0,
       numViews: 0,
       writtenAnon: writtenAnon,
       estReadTime: (this.storySubmitForm.value.content.length) / 20,
+=======
+      oneLiner: this.data.oneLiner,
+      writtenAnon: 0,
+      estReadTime: (this.storySubmitForm.value.content.length)/20,
+>>>>>>> a379dd0edf13f0f97c9ec53c4f1910ee5e319330
       timestamp: this.datePipe.transform(new Date, 'yyyy-MM-dd HH:mm:ss'),
       authorUsername: sessionStorage.getItem('username'),
       numUpVotes: 0
