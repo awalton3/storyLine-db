@@ -2,21 +2,21 @@
   background-color: #eeee;
   position: fixed;
   z-index: 1000;
+  width: 100vw;
+
 }
 
 .bar-container {
   height: 100%;
-  width: 100vw;
+  width: 100%;
+  color: #800322;
 }
 
 .close {
   cursor: pointer;
-  padding: 100px;
-}
-
-.spanner {
-  height: 100px;
-  width: 100px;
+  padding-right: 10px;
+  color: #800322;
+  font-size: 20px;
 }
 
 .logo-short {

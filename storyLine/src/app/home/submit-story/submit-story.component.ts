@@ -1,25 +1,38 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { SQLService } from 'src/app/sql.service';
 import { DatePipe } from '@angular/common';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormGroup, FormControl } from '@angular/forms';
+import { SnackBarService } from 'src/app/shared/snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-submit-story',
   templateUrl: './submit-story.component.html',
   styleUrls: ['./submit-story.component.css']
 })
-export class SubmitStoryComponent implements OnInit {
+export class SubmitStoryComponent implements OnInit, AfterViewInit {
 
-  storySubmitForm: FormGroup;
+  @ViewChild('submitType', { static: false }) submitType: { selected: { value: string; }; };
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<SubmitStoryComponent>,
-    private sql: SQLService, private datePipe: DatePipe,
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
+  storySubmitForm = new FormGroup({
+    'content': new FormControl(null)
+  });
+  placeholder = 'Alas, Dumplings!'
+  username = '';
+
+  constructor(
+    private _bottomSheetRef: MatBottomSheetRef<SubmitStoryComponent>,
+    private sql: SQLService,
+    private snackBarService: SnackBarService,
+    private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.initForm();
+    this.username = sessionStorage.getItem('username')
+  }
+
+  ngAfterViewInit() {
+    // this.submitType.selected.value = this.username;
   }
 
   initForm() {
@@ -28,21 +41,57 @@ export class SubmitStoryComponent implements OnInit {
     });
   }
 
+  // ValidateStory() {
+  //   if (!this.storySubmitForm.value.content)
+  //     return { validStory: false }
+  //
+  //   if (this.storySubmitForm.value.content.includes(this.data.oneLiner)) {
+  //     return { validStory: true }
+  //   } else {
+  //     return { validStory: false }
+  //   }
+  // }
+
   onSubmitForm() {
+
+    let writtenAnon = this.submitType.selected.value == 'anonymous' ? true : false;
+
+    if (!this.storySubmitForm.value.content.includes(this.sql.selectedOneliner)) {
+      this.snackBarService.onOpenSnackBar.next({ message: "You must include the oneliner in your story.", isError: true })
+      return;
+    }
+
     let storyObj = {
       content: this.storySubmitForm.value.content,
+<<<<<<< HEAD
+      oneLiner: this.sql.selectedOneliner,
+      requiresReview: 0,
+      sensitiveContent: 0,
+      numViews: 0,
+      writtenAnon: writtenAnon,
+      estReadTime: (this.storySubmitForm.value.content.length) / 20,
+=======
       oneLiner: this.data.oneLiner,
       writtenAnon: 0,
       estReadTime: (this.storySubmitForm.value.content.length)/20,
+>>>>>>> a379dd0edf13f0f97c9ec53c4f1910ee5e319330
       timestamp: this.datePipe.transform(new Date, 'yyyy-MM-dd HH:mm:ss'),
       authorUsername: sessionStorage.getItem('username'),
       numUpVotes: 0
     }
 
-    this._bottomSheetRef.dismiss()
     this.sql.insertStory(storyObj).subscribe(res => {
+
+      this.snackBarService.onOpenSnackBar.next({ message: "Your story was successfully published", isError: false })
+      // setTimeout(function(){ }, 4000);
+      this._bottomSheetRef.dismiss()
       this.sql.onInsertStory.next(storyObj);
+
+    }, error => {
+      if (error.statusText === 'Created')
+        this.snackBarService.onOpenSnackBar.next({ message: "Plagiarism!", isError: true })
     })
   }
+
 
 }

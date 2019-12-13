@@ -117,3 +117,7 @@ body { margin: 0; font-family: 'Montserrat', sans-serif !important; }
 		width: 100vw !important;
 	}
 }
+
+.storiesViewerContainer .mat-dialog-container{
+  padding: 0 !important;
+}

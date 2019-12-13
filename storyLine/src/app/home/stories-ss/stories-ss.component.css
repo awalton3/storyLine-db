@@ -1,12 +1,12 @@
-.content {
-  height: 100VH;
+.stories-drawer {
+  width: 100VW;
   background-color: #800322;
 }
-
-.stories-list {
+/*
+.container {
   padding-top: 100px;
-  /* margin-top: 3000px; */
-}
+  background-color: #800322;
+} */
 
 .no-stories {
   font-weight: 500;
@@ -20,7 +20,7 @@
 }
 
 .sidenav-drawer {
-  width: 300px;
+  width: 30VW;
   background-color: #800322;
   padding-top: 100px;
 }
@@ -33,11 +33,16 @@
   color: #ffff;
 }
 
+.container {
+  padding-top: 100px;
+  background-color: #800322;
+  height: 88vh;
+  width: 100vw;
+}
+
 .container--empty {
   padding-top: 100px;
   background-color: #800322;
   height: 100vh;
   width: 100vw;
-  text-align: center;
-  padding: 0 100px;
 }

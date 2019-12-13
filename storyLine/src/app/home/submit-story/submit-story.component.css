@@ -1,10 +1,42 @@
+.toolbar {
+  background-color: #800322;
+  height: 60px;
+  padding: 20px 10px;
+}
+
+.selectText {
+  margin: 10px 20px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500;
+  color: #f09f23;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.form-container {
+  padding: 40px;
+}
+
+textarea {
+  font-size: 25px;
+}
+
 ::ng-deep .mat-bottom-sheet-container {
   max-height: 95vh !important;
   max-width: 95vw !important;
   height: 95vh !important;
   width: 95vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.check {
-  cursor: pointer;
+:host ::ng-deep .mat-form-field-label {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 30px;
+  color: grey;
+}
+
+:host ::ng-deep .mat-select-value {
+  color: #eee;
 }

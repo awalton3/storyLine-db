@@ -13,11 +13,13 @@
     </div>
   </mat-drawer>
 
-  <mat-drawer-content class="content">
-      <div *ngIf="selectedStories.length" fxLayout="column" fxLayoutAlign="center center" class="stories-list">
+  <mat-drawer-content class="content" *ngIf="selectedStories.length">
+      <div fxLayout="column" fxLayoutAlign="center center" class="stories-list">
           <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
       </div>
-      <div *ngIf="!selectedStories.length" fxLayout="column" fxLayoutAlign="center center" class="weird-message">
+  </mat-drawer-content>
+  <mat-drawer-content class="container--empty" *ngIf="!selectedStories.length" fxLayout="column" fxLayoutAlign="center center">
+      <div fxLayout="column" fxLayoutAlign="center center" class="weird-message">
         <p class="no-stories">Friendship is like a marshmallow sandwich... it sounds good at first, but gets sticky later.<br></p>
         <p class="no-stories">Make some friends!</p>
       </div>

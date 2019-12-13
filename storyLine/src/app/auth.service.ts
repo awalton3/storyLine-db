@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AuthService {
 
   baseUrl = 'http://db.cse.nd.edu:4201'
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   isAuth() {
     if (sessionStorage.getItem('username') === null) {
@@ -30,6 +31,12 @@ export class AuthService {
   clearUser() {
     sessionStorage.clear();
   }
+
+  logout() {
+    sessionStorage.clear();
+    this.router.navigate(['/login'])
+  }
+
 
   register(username: string, email: string, password: string) {
     console.log(email)
