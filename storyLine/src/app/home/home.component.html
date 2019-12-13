@@ -1,22 +1,32 @@
-<app-toolbar [content]="toolbarContent" (onOpenSideNav)= "sidenav.toggle()" (onDismissDrawer)= "toolbarContent = null; drawer.close()"></app-toolbar>
+<app-toolbar [content]="toolbarContent" (onOpenSideNav)="sidenav.toggle()" (onDismissDrawer)="toolbarContent = null;"></app-toolbar>
 
 <mat-drawer-container>
   <mat-drawer #sidenav [mode]="Over" class="sidenav-drawer">
     <div>
       <mat-nav-list>
-        <a mat-list-item [routerLink]="['/home']"><p class="sidenav-text">FEED</p></a>
-        <a mat-list-item [routerLink]="['/my-stories']"><p class="sidenav-text">STORIES</p></a>
-        <a mat-list-item [routerLink]="['/profile']"><p class="sidenav-text">PROFILE</p></a>
-        <a mat-list-item [routerLink]="['/bookmarks']"><p class="sidenav-text">BOOKMARKS</p></a>
-        <a mat-list-item [routerLink]="['/friend-feed']"><p class="sidenav-text">FRIEND FEED</p></a>
+        <a mat-list-item [routerLink]="['/home']">
+          <p class="sidenav-text">FEED</p>
+        </a>
+        <a mat-list-item [routerLink]="['/my-stories']">
+          <p class="sidenav-text">STORIES</p>
+        </a>
+        <a mat-list-item [routerLink]="['/profile']">
+          <p class="sidenav-text">PROFILE</p>
+        </a>
+        <a mat-list-item [routerLink]="['/bookmarks']">
+          <p class="sidenav-text">BOOKMARKS</p>
+        </a>
+        <a mat-list-item [routerLink]="['/friend-feed']">
+          <p class="sidenav-text">FRIEND FEED</p>
+        </a>
       </mat-nav-list>
     </div>
   </mat-drawer>
 
   <mat-drawer-content>
-    <mat-drawer-container>
+    <!-- <mat-drawer-container> -->
 
-      <mat-drawer class="stories-drawer container" position="end" #drawer [mode]="Over">
+    <!-- <mat-drawer class="stories-drawer container" position="end" #drawer [mode]="Over">
         <div fxLayout="row" fxLayoutAlign="center start">
           <div *ngIf="storiesExist" fxLayout="column" fxLayoutAlign="center center">
             <app-stories *ngFor="let story of selectedStories" [story]=story></app-stories>
@@ -31,22 +41,24 @@
             </button>
           </div>
         </div>
-      </mat-drawer>
+      </mat-drawer> -->
 
-      <mat-drawer-content>
-        <div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
+    <!-- <mat-drawer-content> -->
 
-          <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" (onSelect)="fetchStories(oneLinerEl); toolbarContent = oneLinerEl.oneLiner; drawer.open()" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike($event, oneLinerEl.oneLiner)" (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
+    <div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
 
-          <div class="bottom-right-fab" (click)="onSubmitOneliner()">
-            <button mat-fab color="accent">
-              <i class="material-icons" fxLayoutAlign="center center" style="color: white">add</i>
-            </button>
-          </div>
-        </div>
-      </mat-drawer-content>
+      <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" (onSelect)="fetchStories(oneLinerEl);" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike($event, oneLinerEl.oneLiner)"
+        (onDeleteOneLiner)="deleteOneLiner(oneLinerEl.oneLiner)"></app-oneliner-card>
 
-    </mat-drawer-container>
-  </mat-drawer-content>
+      <div class="bottom-right-fab" (click)="onSubmitOneliner()">
+        <button mat-fab color="accent">
+          <i class="material-icons" fxLayoutAlign="center center" style="color: white">add</i>
+        </button>
+      </div>
+    </div>
+
+    <!-- </mat-drawer-content> -->
+<!-- </mat-drawer-container> -->
+</mat-drawer-content>
 
 </mat-drawer-container>

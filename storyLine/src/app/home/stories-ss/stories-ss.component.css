@@ -1,7 +1,23 @@
-/* .stories-drawer {
+.stories-drawer {
   width: 100VW;
   background-color: #800322;
-} */
+}
+
+.container {
+  padding-top: 100px;
+  background-color: #800322;
+}
+
+.no-stories {
+  font-weight: 500;
+  font-size: 45px;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #ffff;
+}
+
+.weird-message {
+  padding-top: 35VH;
+}
 
 .sidenav-drawer {
   width: 30VW;

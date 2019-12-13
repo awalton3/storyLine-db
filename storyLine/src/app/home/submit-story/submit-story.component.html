@@ -1,14 +1,20 @@
-<div fxLayoutAlign="space-between center" fxLayout="row">
-  <span></span>
-  <span></span>
+<div fxLayoutAlign="space-between center" fxLayout="row" class="toolbar">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <p class="selectText">Submit as: </p>
+    <mat-form-field fxLayoutAlign="center center" color="accent">
+      <mat-select matNativeControl style="color: white;" #submitType>
+        <mat-option [value]="username">{{ username }}</mat-option>
+        <mat-option value="anonymous">anonymous</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <button mat-icon-button (click)="onSubmitForm()" color="accent">
-    <i class="material-icons">done</i>
+    <i class="material-icons" style="font-size: 30px; padding: 5px;">done</i>
   </button>
 </div>
 
-<form [formGroup]="storySubmitForm" class="container" fxLayout="column" fxLayoutAlign="space-between center">
+<form [formGroup]="storySubmitForm" class="form-container" fxLayout="column" fxLayoutAlign="space-between center">
   <mat-form-field floatLabel="never" fxFill>
-    <textarea matInput (click)="checkPlaceHolder()" formControlName="content" type="text" placeholder="{{ placeholder }}" rows="30"></textarea>
-    <!-- <mat-slide-toggle>Slide me!</mat-slide-toggle> -->
+    <textarea matInput formControlName="content" type="text" placeholder="{{ placeholder }}" rows="20"></textarea>
   </mat-form-field>
 </form>

@@ -95,7 +95,7 @@ export class StoriesComponent implements OnInit {
             this.me = 1;
         }
         this.subs.add(this.sql.getFollowing(this.story.authorUsername).subscribe(result => {
-          console.log(result['following'])
+          // console.log(result['following'])
           if (result['following']) {
             this.following = 1
           }

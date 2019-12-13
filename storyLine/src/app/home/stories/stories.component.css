@@ -7,8 +7,12 @@
   padding: 75px;
 }
 
+.stories-card-header {
+  width: 40%;
+}
+
 .profile-image {
-  background-color: #ab0a4a;
+  background-color: #800322;
   width: 70px;
   height: 70px;
   border-radius: 50% 50%;
@@ -22,6 +26,15 @@
   font-family: 'Noto Serif KR', serif;
   color: black;
   white-space: pre-wrap;
+}
+
+.stories-card-header-info {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px;
+}
+
+.timestamp {
+  margin-top: -10px;
 }
 
 .votes-container {
@@ -51,9 +64,11 @@
 
 .bookmark-container-icon {
   font-size: 60px;
-  color: #a40943;
+  color: #800322;
 }
 
 .follow {
-    font-size: 30px;
+    font-size: 28px;
+    color: #800322;
+    cursor: pointer;
 }

@@ -3,7 +3,8 @@ import { SQLService } from '../sql.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.component';
 import { Subscription } from 'rxjs';
-import { SubmitStoryComponent } from './submit-story/submit-story.component';
+import { MatDialog } from '@angular/material/dialog';
+import { StoriesSsComponent } from './stories-ss/stories-ss.component';
 
 @Component({
   selector: 'app-home',
@@ -16,20 +17,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   oneLiners: any;
   selectedStories: any;
   selectedOneliner: string;
-  toolbarContent: string;
-  storiesExist : number = 0;
+  // toolbarContent: string;
+  storiesExist: number = 0;
   private subs: Subscription = new Subscription();
 
   constructor(
     private sql: SQLService,
-    private _bottomSheet: MatBottomSheet) { }
+    private _bottomSheet: MatBottomSheet,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
 
     this.getOneLiners();
     this.listenForOneLiners();
     this.listenForStories();
-    this.toolbarContent = null;
+    // this.toolbarContent = null;
 
   }
 
@@ -54,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   updateLike(liked, oneLiner) {
     console.log(liked);
-    oneLiner = { "oneLiner": oneLiner , "change": liked}
+    oneLiner = { "oneLiner": oneLiner, "change": liked }
     this.sql.updateOneLinerNumUpVotes(oneLiner).subscribe(res => {
       //this.getOneLiners();
     }, error => console.log(error))
@@ -64,14 +66,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._bottomSheet.open(SubmitOneLinerComponent);
   }
 
-  onAddStory() {
-    console.log("onAddStory was clicked")
-    this._bottomSheet.open(SubmitStoryComponent, {
-      data : {
-        oneLiner: this.selectedOneliner
-      }
-    });
-  }
+  // onAddStory() {
+  //   this._bottomSheet.open(SubmitStoryComponent, {
+  //     data: {
+  //       oneLiner: this.selectedOneliner
+  //     }
+  //   });
+  // }
 
   addOneLiner(newOneLiner) {
     newOneLiner = {
@@ -88,18 +89,33 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   fetchStories(oneLinerObj) {
+    console.log('IN FETCH STORIES')
     this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
       this.selectedStories = res;
-      if (res['exist']) {
-          this.storiesExist = 1;
+
+      let stories = res;
+      this.openStoriesView(stories, oneLinerObj.oneLiner);
+
+      if (res[0]['exist'] == 1) {
+        this.storiesExist = 1;
       }
       this.selectedOneliner = oneLinerObj.oneLiner
-      window.scrollTo(0,0)
+      this.sql.selectedOneliner = oneLinerObj.oneLiner;
     }))
+  }
+
+  openStoriesView(stories: any, oneLiner: string) {
+    console.log("IN OPEN STORIES VIEW")
+    this.dialog.open(StoriesSsComponent, {
+      width: '100vw',
+      maxWidth: '100vw',
+      height: '100vh',
+      panelClass: 'storiesViewerContainer',
+      data: { stories:  stories, oneLiner: oneLiner}
+    });
   }
 
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
-
 }

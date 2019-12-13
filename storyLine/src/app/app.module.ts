@@ -17,6 +17,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 /* Child components */
 import { LoginComponent } from './login/login.component';
@@ -33,6 +36,7 @@ import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { MyStoriesComponent } from './my-stories/my-stories.component';
 import { AppContentComponent } from './app-content/app-content.component';
 import { FriendFeedComponent } from './friend-feed/friend-feed.component';
+import { StoriesSsComponent } from './home/stories-ss/stories-ss.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,8 @@ import { FriendFeedComponent } from './friend-feed/friend-feed.component';
     BookmarksComponent,
     MyStoriesComponent,
     AppContentComponent,
-    FriendFeedComponent
+    FriendFeedComponent,
+    StoriesSsComponent
   ],
   imports: [
     BrowserModule,
@@ -65,10 +70,12 @@ import { FriendFeedComponent } from './friend-feed/friend-feed.component';
     MatSidenavModule,
     SnackBarModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [SubmitOneLinerComponent, SubmitStoryComponent]
+  entryComponents: [SubmitOneLinerComponent, SubmitStoryComponent, StoriesSsComponent]
 })
 export class AppModule { }

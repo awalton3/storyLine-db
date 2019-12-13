@@ -9,9 +9,13 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class SQLService {
 
+  //SELECTED ONELINER
+  selectedOneliner: string;
+
   baseUrl = 'http://db.cse.nd.edu:4201'
   onAddOneliner = new Subject<any>();
   onInsertStory = new Subject<any>();
+  // onCloseStoriesDialog = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
@@ -103,5 +107,5 @@ export class SQLService {
   addFollower(followObj) {
       return this.http.post(`${this.baseUrl}/insertFollowers.php`, followObj);
   }
-  
+
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { SQLService } from 'src/app/sql.service';
 import { DatePipe } from '@angular/common';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -10,22 +10,29 @@ import { SnackBarService } from 'src/app/shared/snack-bar/snack-bar.service';
   templateUrl: './submit-story.component.html',
   styleUrls: ['./submit-story.component.css']
 })
-export class SubmitStoryComponent implements OnInit {
+export class SubmitStoryComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('submitType', { static: false }) submitType: { selected: { value: string; }; };
 
   storySubmitForm = new FormGroup({
     'content': new FormControl(null)
   });
   placeholder = 'Alas, Dumplings!'
+  username = '';
 
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<SubmitStoryComponent>,
     private sql: SQLService,
     private snackBarService: SnackBarService,
-    private datePipe: DatePipe,
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
+    private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.initForm();
+    this.username = sessionStorage.getItem('username')
+  }
+
+  ngAfterViewInit() {
+    // this.submitType.selected.value = this.username;
   }
 
   initForm() {
@@ -47,18 +54,20 @@ export class SubmitStoryComponent implements OnInit {
 
   onSubmitForm() {
 
-    if (!this.storySubmitForm.value.content.includes(this.data.oneLiner)) {
+    let writtenAnon = this.submitType.selected.value == 'anonymous' ? true : false;
+
+    if (!this.storySubmitForm.value.content.includes(this.sql.selectedOneliner)) {
       this.snackBarService.onOpenSnackBar.next({ message: "You must include the oneliner in your story.", isError: true })
       return;
     }
 
     let storyObj = {
       content: this.storySubmitForm.value.content,
-      oneLiner: this.data.oneLiner,
+      oneLiner: this.sql.selectedOneliner,
       requiresReview: 0,
       sensitiveContent: 0,
       numViews: 0,
-      writtenAnon: 0,
+      writtenAnon: writtenAnon,
       estReadTime: (this.storySubmitForm.value.content.length) / 20,
       timestamp: this.datePipe.transform(new Date, 'yyyy-MM-dd HH:mm:ss'),
       authorUsername: sessionStorage.getItem('username'),
@@ -75,14 +84,5 @@ export class SubmitStoryComponent implements OnInit {
     })
   }
 
-  // checkPlaceHolder() {
-  //   if (this.placeholder) {
-  //     this.placeholder = null;
-  //     return;
-  //   } else {
-  //     this.placeholder = 'Alas, Dumplings';
-  //     return;
-  //   }
-  // }
 
 }
