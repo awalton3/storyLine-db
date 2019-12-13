@@ -13,7 +13,8 @@ export class BookmarksComponent implements OnInit {
   constructor(private sql: SQLService) { }
 
   ngOnInit() {
-    this.loadBookmarkedStories(); 
+    this.selectedStories = [];
+    this.loadBookmarkedStories();
   }
 
 
@@ -21,6 +22,7 @@ export class BookmarksComponent implements OnInit {
     this.sql.getBookmarkedStories(sessionStorage.getItem('username'))
       .subscribe(bookmarkedStories => {
         this.selectedStories = bookmarkedStories;
+        console.log(this.selectedStories)
       })
   }
 

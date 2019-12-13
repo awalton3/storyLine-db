@@ -14,6 +14,7 @@ export class FriendFeedComponent implements OnInit {
   selectedStories: any;
 
   ngOnInit() {
+      this.selectedStories = [];
       this.loadFriendStories()
   }
 

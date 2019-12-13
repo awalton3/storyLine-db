@@ -2,11 +2,11 @@
   width: 100VW;
   background-color: #800322;
 }
-
+/*
 .container {
   padding-top: 100px;
   background-color: #800322;
-}
+} */
 
 .no-stories {
   font-weight: 500;
@@ -16,7 +16,7 @@
 }
 
 .weird-message {
-  padding-top: 35VH;
+  /* padding-top: 35VH; */
 }
 
 .sidenav-drawer {
@@ -36,4 +36,13 @@
 .container {
   padding-top: 100px;
   background-color: #800322;
+  height: 88vh;
+  width: 100vw;
+}
+
+.container--empty {
+  padding-top: 100px;
+  background-color: #800322;
+  height: 100vh;
+  width: 100vw;
 }

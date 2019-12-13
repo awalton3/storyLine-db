@@ -12,7 +12,7 @@ import { SQLService } from 'src/app/sql.service';
 export class StoriesSsComponent implements OnInit {
 
   toolbarContent: string;
-
+  storiesExist: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<StoriesSsComponent>,
@@ -22,7 +22,8 @@ export class StoriesSsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.data.stories)
+    this.sql.dialogueRef = this.dialogRef; 
+    this.storiesExist = this.data.stories.length ? true : false;
     this.toolbarContent = this.data.oneLiner;
   }
 

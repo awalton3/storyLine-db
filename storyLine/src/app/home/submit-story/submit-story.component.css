@@ -18,7 +18,7 @@
 }
 
 textarea {
-  font-size: 25px ;
+  font-size: 25px;
 }
 
 ::ng-deep .mat-bottom-sheet-container {
@@ -35,4 +35,8 @@ textarea {
   font-weight: 500 !important;
   font-size: 30px;
   color: grey;
+}
+
+:host ::ng-deep .mat-select-value {
+  color: #eee;
 }

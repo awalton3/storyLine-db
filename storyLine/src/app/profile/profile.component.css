@@ -5,6 +5,13 @@
   font-weight: 600;
 }
 
+.toolbar--title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500;
+  color:  #eee;
+  font-size: 20px;
+}
+
 .username {
   font-size: 25px;
   color:  #eee;
@@ -115,4 +122,10 @@ input:-webkit-autofill:focus
 
 .toolbar-icon {
   color: #800322;
+}
+
+.home-icon {
+  color: #eee;
+  cursor: pointer;
+  font-size: 25px;
 }

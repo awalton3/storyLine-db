@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   oneLiners: any;
   selectedStories: any;
   selectedOneliner: string;
-  // toolbarContent: string;
   storiesExist: number = 0;
   private subs: Subscription = new Subscription();
 
@@ -49,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   listenForStories() {
     this.subs.add(this.sql.onInsertStory.subscribe(storyObj => {
-      console.log(storyObj)
+      this.sql.dialogueRef.close();
       this.fetchStories(storyObj)
     }))
   }
@@ -89,7 +88,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   fetchStories(oneLinerObj) {
-    console.log('IN FETCH STORIES')
     this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
       this.selectedStories = res;
 
@@ -105,7 +103,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   openStoriesView(stories: any, oneLiner: string) {
-    console.log("IN OPEN STORIES VIEW")
     this.dialog.open(StoriesSsComponent, {
       width: '100vw',
       maxWidth: '100vw',

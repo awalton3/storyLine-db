@@ -16,11 +16,11 @@
 }
 
 .weird-message {
-  padding-top: 35VH;
+  /* padding-top: 35VH; */
 }
 
 .sidenav-drawer {
-  width: 30VW;
+  width: 300px;
   background-color: #800322;
   padding-top: 100px;
 }
@@ -31,4 +31,13 @@
   font-size: 20px;
   font-family: 'Montserrat', sans-serif !important;
   color: #ffff;
+}
+
+.container--empty {
+  padding-top: 100px;
+  background-color: #800322;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  padding: 0 100px;
 }

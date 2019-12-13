@@ -8,29 +8,38 @@
     </mat-toolbar>
   </mat-drawer>
 
-  <mat-drawer-content class="background-base heightFull" fxLayout="column" fxLayoutAlign="center center">
-    <p class="title">Hi, {{ user.username }}</p>
-    <div class="profile-image-container-large profile-image-click" style="background-image: url(https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80)">
-      <div (click)="imageEditor.open()" class="profile-image-add">
-        <i fxLayoutAlign="center center" class="material-icons profile-image-add-icon">add</i>
+  <mat-drawer-content class="background-base heightFull">
+
+    <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" style="background: transparent; padding: 0 30px;">
+      <i class="material-icons home-icon" (click)="navigateToHome()">home</i>
+      <p class="toolbar--title"> MY PROFILE</p>
+      <i class="material-icons home-icon" (click)="logout()">power_settings_new</i>
+    </mat-toolbar>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <p class="title">Hi, {{ user.username }}</p>
+      <div class="profile-image-container-large profile-image-click" style="background-image: url(https://images.unsplash.com/photo-1535498730771-e735b998cd64?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80)">
+        <!-- <div (click)="imageEditor.open()" class="profile-image-add">
+          <i fxLayoutAlign="center center" class="material-icons profile-image-add-icon">add</i>
+        </div> -->
       </div>
+      <br>
+      <br>
+      <!-- <p class="username">{{ user.username }}</p>
+        <p class="email">{{ user.email }}</p>  -->
+      <p class="forgot" fxLayout="row" fxLayoutAlign="start start">Update Password</p>
+      <form [formGroup]="forgotForm" fxLayout="column" fxLayoutAlign="center center">
+        <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
+          <input matInput formControlName="new" type="password" placeholder="New password" class="auth-input-field" fxLayoutAlign="center center">
+          <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">lock</i></span>
+        </mat-form-field>
+        <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
+          <input matInput formControlName="confirm" type="password" placeholder="Confirm" class="auth-input-field" fxLayoutAlign="center center">
+          <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">lock</i></span>
+        </mat-form-field>
+        <button (click)="onSubmit()" mat-raised-button color="accent" class="action-button">UPDATE</button>
+      </form>
     </div>
-    <br>
-    <br>
-    <!-- <p class="username">{{ user.username }}</p>
-      <p class="email">{{ user.email }}</p>  -->
-    <p class="forgot" fxLayout="row" fxLayoutAlign="start start">Update Password</p>
-    <form [formGroup]="forgotForm" fxLayout="column" fxLayoutAlign="center center">
-      <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
-        <input matInput formControlName="new" type="password" placeholder="New password" class="auth-input-field" fxLayoutAlign="center center">
-        <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">lock</i></span>
-      </mat-form-field>
-      <mat-form-field floatLabel="never" class="auth-input" fxLayoutAlign="start start">
-        <input matInput formControlName="confirm" type="password" placeholder="Confirm" class="auth-input-field" fxLayoutAlign="center center">
-        <span matPrefix><i class="material-icons auth-input-field-icon" fxLayoutAlign="center center">lock</i></span>
-      </mat-form-field>
-      <button (click)="onSubmit()" mat-raised-button color="accent" class="action-button">UPDATE</button>
-    </form>
+
   </mat-drawer-content>
 
 </mat-drawer-container>

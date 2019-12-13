@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SnackBarService } from '../shared/snack-bar/snack-bar.service';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private snackBarService: SnackBarService,
-    private authService: AuthService,) { }
+    private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.user = {
@@ -45,6 +46,14 @@ export class ProfileComponent implements OnInit {
 
   provideFeedback(message: string, isError: boolean) {
     this.snackBarService.onOpenSnackBar.next({ message: message, isError: isError })
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/home'])
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }
