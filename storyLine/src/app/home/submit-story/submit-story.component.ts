@@ -56,14 +56,14 @@ export class SubmitStoryComponent implements OnInit, AfterViewInit {
 
     let writtenAnon = this.submitType.selected.value == 'anonymous' ? true : false;
 
-    if (!this.storySubmitForm.value.content.includes(this.sql.selectedOneliner)) {
-      this.snackBarService.onOpenSnackBar.next({ message: "You must include the oneliner in your story.", isError: true })
-      return;
-    }
+    // if (!this.storySubmitForm.value.content.includes(this.sql.selectedOneliner)) {
+    //   this.snackBarService.onOpenSnackBar.next({ message: "You must include the oneliner in your story.", isError: true })
+    //   return;
+    // }
 
     let storyObj = {
       content: this.storySubmitForm.value.content,
-      oneLiner: this.sql.selectedOneliner,
+      oneLiner: sessionStorage.getItem('oneLiner'),
       writtenAnon: writtenAnon,
       estReadTime: (this.storySubmitForm.value.content.length)/20,
       timestamp: this.datePipe.transform(new Date, 'yyyy-MM-dd HH:mm:ss'),

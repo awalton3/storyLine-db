@@ -88,6 +88,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   fetchStories(oneLinerObj) {
+    sessionStorage.setItem('oneLiner', oneLinerObj.oneLiner)
     this.subs.add(this.sql.selectStoryByOneLiner(oneLinerObj).subscribe(res => {
       this.selectedStories = res;
 
@@ -97,9 +98,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       if (res[0]['exist'] == 1) {
         this.storiesExist = 1;
       }
-      
+
       this.selectedOneliner = oneLinerObj.oneLiner
       this.sql.selectedOneliner = oneLinerObj.oneLiner;
+      // sessionStorage.setItem('oneLiner', oneLinerObj.oneLiner)
     }))
   }
 
