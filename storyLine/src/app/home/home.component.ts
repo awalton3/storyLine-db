@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getOneLiners();
     this.listenForOneLiners();
     this.listenForStories();
-    // this.toolbarContent = null;
 
   }
 
@@ -57,21 +56,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log(liked);
     oneLiner = { "oneLiner": oneLiner, "change": liked }
     this.sql.updateOneLinerNumUpVotes(oneLiner).subscribe(res => {
-      //this.getOneLiners();
     }, error => console.log(error))
   }
 
   onSubmitOneliner() {
     this._bottomSheet.open(SubmitOneLinerComponent);
   }
-
-  // onAddStory() {
-  //   this._bottomSheet.open(SubmitStoryComponent, {
-  //     data: {
-  //       oneLiner: this.selectedOneliner
-  //     }
-  //   });
-  // }
 
   addOneLiner(newOneLiner) {
     newOneLiner = {
@@ -101,7 +91,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       this.selectedOneliner = oneLinerObj.oneLiner
       this.sql.selectedOneliner = oneLinerObj.oneLiner;
-      // sessionStorage.setItem('oneLiner', oneLinerObj.oneLiner)
     }))
   }
 

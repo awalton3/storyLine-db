@@ -23,12 +23,11 @@ if(isset($postdata) && !empty($postdata))
 
     $accounts = [];
     $i = 0;
-    $result = mysqli_stmt_bind_result($stmt, $c1, $c2, $c3, $c4);
+    $result = mysqli_stmt_bind_result($stmt, $c1, $c2, $c3);
     while (mysqli_stmt_fetch($stmt)) {
         $accounts[$i]['username'] = $c1;
         $accounts[$i]['email'] = $c2;
-        $accounts[$i]['displayName'] = $c3;
-        if ($hashedPwd === $c4)
+        if ($hashedPwd === $c3)
         {
             $accounts[$i]['valid'] = 1;
         }
@@ -36,7 +35,7 @@ if(isset($postdata) && !empty($postdata))
         {
             $accounts[$i]['valid'] = 0;
         }
-        $accounts[$i]['hashedPassword'] = $c4;
+        $accounts[$i]['hashedPassword'] = $c3;
         $accounts[$i]['newhash'] = $hashedPwd;
         $i++;
     }

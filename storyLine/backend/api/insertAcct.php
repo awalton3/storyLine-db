@@ -11,18 +11,16 @@ if(isset($postdata) && !empty($postdata))
 
   $username = trim($request->username);
   $email = trim($request->email);
-  $displayName = trim($request->displayName);
   $hashedPassword = hash("sha256", trim($request->password));
 
-    $stmt = mysqli_prepare($con, "insert into accounts (username,email,displayName,hashedPassword) values (?, ?, ?, ?)");
+    $stmt = mysqli_prepare($con, "insert into accounts (username,email,hashedPassword) values (?, ?, ?)");
     if ($stmt)
     {
-        mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $displayName, $hashedPassword);
+        mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPassword);
         mysqli_stmt_execute($stmt);
         $resultVar = [
       'username' => $username,
       'email' => $email,
-      'displayName' => $displayName,
       'hashedPassword' => $hashedPassword ];
 
         echo json_encode($resultVar);
