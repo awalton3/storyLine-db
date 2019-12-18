@@ -1,4 +1,4 @@
-<app-toolbar [content]="toolbarContent" (onOpenSideNav)="sidenav.toggle()" (onDismissDrawer)="toolbarContent = null; dialogRef.close()"></app-toolbar>
+<app-toolbar [content]="toolbarContent" (onDismissDrawer)="toolbarContent = null; dialogRef.close()"></app-toolbar>
 
 <mat-drawer-container>
   <mat-drawer #sidenav [mode]="Over" class="sidenav-drawer">
