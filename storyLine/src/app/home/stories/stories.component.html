@@ -2,13 +2,18 @@
 
   <mat-card-content>
 
-    <div class="stories-card-header" fxLayout="row" fxLayoutAlign="start start">
-      <div class="profile-image"></div>
-      <div class="stories-card-header-info">
-        <p>{{story.authorUsername}}</p>
-        <p>{{story.timestamp}}</p>
+    <div class="stories-card-header"  fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <div class="profile-image" fxLayoutAlign="center center" >
+          <i fxLayout="row" fxLayoutAlign="center center" class="material-icons" style="font-size: 80px; color: #ffffff; margin-top: 17px">person</i>
+        </div>
+        <div class="stories-card-header-info">
+          <p *ngIf="!story.writtenAnon" style="font-weight: 800;">{{ story.authorUsername }}</p>
+          <p *ngIf="story.writtenAnon" style="font-weight: 800;">Anonymous User</p>
+          <p class="timestamp">{{ story.timestamp | date }}</p>
+        </div>
       </div>
-      <div *ngIf="!me">
+      <div *ngIf="!me && !story.writtenAnon">
           <i *ngIf="!following" class="material-icons follow" (click)="onFollow()">person_add</i>
           <i *ngIf="following" class="material-icons follow" (click)="onFollow()">person_add_disabled</i>
       </div>

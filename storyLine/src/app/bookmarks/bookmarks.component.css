@@ -1,5 +1,5 @@
 .sidenav-drawer {
-  width: 30VW;
+  width: 300px;
   background-color: #800322;
   padding-top: 100px;
 }
@@ -10,4 +10,24 @@
   font-size: 20px;
   font-family: 'Montserrat', sans-serif !important;
   color: #ffff;
+}
+
+.no-stories {
+  font-weight: 500;
+  font-size: 45px;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #ffff;
+}
+
+.stories-list {
+  padding-top: 100px;
+}
+
+.content {
+  height: 100VH;
+  background-color: #800322;
+}
+
+.weird-message {
+  padding-top: 35VH;
 }

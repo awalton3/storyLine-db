@@ -19,7 +19,6 @@ export class MyStoriesComponent implements OnInit {
   }
 
   loadMyStories() {
-    console.log('in load my stories')
     this.subs.add(this.sql.getMyStories().subscribe(selectedStories => {
       this.selectedStories = selectedStories
     }));

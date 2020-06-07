@@ -9,9 +9,14 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class SQLService {
 
+  //SELECTED ONELINER
+  selectedOneliner: string;
+  dialogueRef: any; 
+
   baseUrl = 'http://db.cse.nd.edu:4201'
   onAddOneliner = new Subject<any>();
   onInsertStory = new Subject<any>();
+  // onCloseStoriesDialog = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
@@ -58,6 +63,11 @@ export class SQLService {
     return this.http.post(`${this.baseUrl}/insertAcctsBookmarkStories.php`, bookmarkObj);
   }
 
+  getBookmarkedStories(username: string) {
+    let body = { username: username }
+    return this.http.post(this.baseUrl + "/selectAcctsBookmarkStoriesByAcct.php", body)
+  }
+
   updateStoriesNumUpVotes(storyObj): any {
     return this.http.put(`${this.baseUrl}/updateStoriesNumUpVotes.php`, storyObj);
   }
@@ -98,4 +108,5 @@ export class SQLService {
   addFollower(followObj) {
       return this.http.post(`${this.baseUrl}/insertFollowers.php`, followObj);
   }
+
 }
