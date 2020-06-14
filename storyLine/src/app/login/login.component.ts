@@ -31,25 +31,25 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.loginForm.status === "INVALID") {
-      this.handleError("Invalid username or password");
-      return;
-    }
-    this.authService.login(this.loginForm.value.username, this.loginForm.value.password)
-      .subscribe(res => {
-        if (res && !res[0]['valid']) {
-          this.handleError("Invalid username or password");
-          return;
-        }
-        if (res && res[0]['valid']) {
-          this.authService.setUser(res[0]['username'], res[0]['email'])
-          this.router.navigate(['./home'])
-        } else {
-          this.handleError("Invalid username or password")
-        }
-      }, error => this.handleError(error))
-  }
+  // onSubmit() {
+  //   if (this.loginForm.status === "INVALID") {
+  //     this.handleError("Invalid username or password");
+  //     return;
+  //   }
+  //   this.authService.login(this.loginForm.value.username, this.loginForm.value.password)
+  //     .subscribe(res => {  // FIXME
+  //       if (res && !res[0]['valid']) {
+  //         this.handleError("Invalid username or password");
+  //         return;
+  //       }
+  //       if (res && res[0]['valid']) {
+  //         this.authService.setUser(res[0]['username'], res[0]['email'])
+  //         this.router.navigate(['./home'])
+  //       } else {
+  //         this.handleError("Invalid username or password")
+  //       }
+  //     }, error => this.handleError(error))
+  // }
 
   handleError(error: string) {
     this.snackBarService.onOpenSnackBar.next({ message: error, isError: true })

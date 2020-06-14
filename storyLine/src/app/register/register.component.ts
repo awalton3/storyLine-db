@@ -28,16 +28,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.register(this.registerForm.value.username, this.registerForm.value.email, this.registerForm.value.password)
-      .subscribe(res => {
-        this.authService.clearUser();
-        this.navigateToLogin()
-      }, error => {
-        if (error.statusText === 'Created')
-          this.handleError("An account with this username already exists.")
-        else
-          console.log(error)
-      })
+    this.authService.register(this.registerForm.value.email, this.registerForm.value.password)
+      // .subscribe(res => {
+      //   this.authService.clearUser();
+      //   this.navigateToLogin()
+      // }, error => {
+      //   if (error.statusText === 'Created')
+      //     this.handleError("An account with this username already exists.")
+      //   else
+      //     console.log(error)
+      // })
   }
 
   handleError(error) {
