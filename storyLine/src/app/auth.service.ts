@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
-
+import 'firebase/auth';
+import { SnackBarService } from './shared/snack-bar/snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,112 +11,95 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 export class AuthService {
 
-  constructor(private router: Router, public auth: AngularFireAuth) {}
-
-  isAuth() {
-    if (sessionStorage.getItem('username') === null) {
-      return false;
-    }
-    return true;
-  }
-
-  getUser() {
-    return sessionStorage.getItem('username')
-  }
-
-  setUser(username: string, email: string) {
-    sessionStorage.setItem('username', username);
-    sessionStorage.setItem('email', email);
-  }
-
-  clearUser() {
-    sessionStorage.clear();
-  }
-
-  logout() {
-    sessionStorage.clear();
-    this.router.navigate(['/login'])
-  }
-
-  // logout() {
-  //   firebase.auth().signOut();
-  //   sessionStorage.clear();
-  // }
+  constructor(private router: Router, private snackBarService: SnackBarService) {}
 
   register(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(userObj => {
         console.log(userObj); 
-        // this.verifyEmail();
+        this.verifyEmail();
+        this.router.navigate(['/login'])
       })
-      .catch(error => console.log(error)); 
-
-    // console.log(email)
-    // return this.http.post(this.baseUrl + "/insertAcct.php", {
-    //   username: username,
-    //   email: email,
-    //   displayName: username,
-    //   password: password
-    // })
+      .catch(error => this.handleError(error)); 
   }
 
-  login(username: string, password: string) {
-    // return this.http.post(this.baseUrl + "/selectAcct.php", {
-    //   username: username,
-    //   plaintextPwd: password
-    // })
+  login(email: string, password: string) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.router.navigate(['/home']);
+      }).catch(error => { 
+        this.handleError(error.code); 
+      })
   }
 
-  updatePassword(username: string, newPassword: string) {
-    // return this.http.post(this.baseUrl + "/updateAcctPassword.php", {
-    //   username: username,
-    //   password: newPassword
-    // })
+  updatePassword(username: string, newPassword: string) {  //TODO: 
+
   }
 
-  // register(formData: { email: string; password: string; name: any; type: string; }) {
-  //   firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
-  //     .then(userObj => {
-  //       this.userService.addUserToFbCollect(this.createNewUserObj(userObj, formData))
-  //       this.verifyEmail();
-  //     })
-  //     .catch(error => this.handleError(error.code))
-  // }
+  verifyEmail() {
+    firebase.auth().currentUser.sendEmailVerification()
+      .then(() => this.onSuccess("An email verification has been sent."))
+      .catch(() => this.onError("An error occured when sending the email verification. Please be sure the email is valid."));
+  }
 
-  // login(formData: { email: string; password: string; }, redirectUrl: string) {
-  //   firebase.auth().signInWithEmailAndPassword(formData.email, formData.password)
-  //     .then(userObj => {
-  //       //EMAIL VERIF
-  //       // if (userObj.user.emailVerified) {
-  //       //   this.userService.createLocalUser(userObj.user.uid)
-  //       //   this.userService.user
-  //       //     .pipe(first())
-  //       //     .subscribe(user => this.router.navigate(['mughub', user.type]));
-  //       // } else
-  //       //   alert("Please verify your email before logging in.");
-  //       this.userService.createLocalUser(userObj.user.uid);
-  //       this.userService.user
-  //         .pipe(first())
-  //         .subscribe(user => {
-  //           if (!redirectUrl || (redirectUrl && user.type !== redirectUrl.split('/')[2]))
-  //             user.isNewUser ? this.router.navigate(['mughub/welcome']) : this.router.navigate(['mughub', user.type]);
-  //           else
-  //             this.router.navigateByUrl(redirectUrl);
-  //         });
-  //     })
-  //     .catch(error => this.handleError(error.code))
-  // }
+  onError(error: string) {
+    this.snackBarService.onOpenSnackBar.next({ message: error, isError: true })
+  }
 
-  // verifyEmail() {
-  //   firebase.auth().currentUser.sendEmailVerification()
-  //     .then(() => this.onSuccess("An email verification has been sent."))
-  //     .catch(() => this.onError("An error occured when sending the email verification. Please be sure the email is valid."));
-  // }
+  onSuccess(success: string) {
+    this.snackBarService.onOpenSnackBar.next({ message: success, isError: false })
+  }
 
-  // resetPassword(email: string) {
-  //   firebase.auth().sendPasswordResetEmail(email)
-  //     .then(() => this.onSuccess("A password reset email was sent to " + email))
-  //     .catch(error => this.handleError(error.code));
-  // }
+  handleError(errorCode: any) {
+    switch (errorCode) {
+      //login
+      case 'auth/invalid-email':
+        this.onError('Your email is invalid.')
+        break;
+      case 'auth/user-disabled':
+        this.onError('Your account is disabled.')
+        break;
+      case 'auth/user-not-found':
+        this.onError('Your email is not registered.')
+        break;
+      case 'auth/wrong-password':
+        this.onError('Your password is invalid.')
+        break;
+
+      //register
+      case 'auth/email-already-in-use':
+        this.onError('Email already in use')
+        break;
+      case 'auth/invalid-email':
+        this.onError('Email address is invalid')
+        break;
+      case 'auth/operation-not-allowed':
+        this.onError('Operation not allowed');
+        break;
+      case 'auth/weak-password':
+        this.onError('Password is weak');
+        break;
+
+      //reset
+      case 'auth/invalid-email':
+        this.onError('Email invalid');
+        break;
+      case 'auth/user-not-found':
+        this.onError('No user found');
+        break;
+    }
+  }
+
+  logout() {
+    sessionStorage.clear();
+    firebase.auth().signOut();
+    this.router.navigate(['/login'])
+  }
+
+  resetPassword(email: string) {
+    firebase.auth().sendPasswordResetEmail(email)
+      .then(() => this.onSuccess("A password reset email was sent to " + email))
+      .catch(error => this.handleError(error.code));
+  }
 
 }

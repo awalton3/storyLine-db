@@ -46,6 +46,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import * as firebase from 'firebase';
 
+firebase.initializeApp(environment.firebaseConfig);
+
 @NgModule({
   declarations: [
     AppComponent,
