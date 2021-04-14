@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SQLService } from 'src/app/sql.service';
 import { DatePipe } from '@angular/common';
-import { DbService } from '../../db.service';
 
 @Component({
   selector: 'app-submit-one-liner',
@@ -14,7 +14,7 @@ export class SubmitOneLinerComponent implements OnInit {
   oneLinerForm: FormGroup;
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<SubmitOneLinerComponent>,
-    private db: DbService, private datePipe: DatePipe) { }
+    private sql: SQLService, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.initForm();
@@ -27,11 +27,12 @@ export class SubmitOneLinerComponent implements OnInit {
   }
 
   onSubmitForm() {
-    const oneLinerObj = {
+    let oneLinerObj = {
       content: this.oneLinerForm.value.content,
-      timestamp: this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss')
-    };
-    this._bottomSheetRef.dismiss();
-    this.db.onAddOneliner.next(oneLinerObj);
+      timestamp: this.datePipe.transform(new Date, 'yyyy-MM-dd HH:mm:ss')
+    }
+    this._bottomSheetRef.dismiss()
+    this.sql.onAddOneliner.next(oneLinerObj);
   }
+  
 }

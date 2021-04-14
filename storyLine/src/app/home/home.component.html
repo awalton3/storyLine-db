@@ -25,6 +25,7 @@
 
   <mat-drawer-content>
 
+
     <div fxLayout="row wrap" fxLayoutAlign="center start" class="container">
 
       <app-oneliner-card *ngFor="let oneLinerEl of oneLiners" (onSelect)="fetchStories(oneLinerEl);" [oneLiner]=oneLinerEl (onUpdateLike)="updateLike($event, oneLinerEl.oneLiner)"

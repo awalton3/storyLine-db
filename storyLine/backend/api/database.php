@@ -4,11 +4,10 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-
 define('DB_HOST', 'localhost');
-define('DB_USER', 'kmalecki');
-define('DB_PASS', 'klm');
-define('DB_NAME', 'kmalecki');
+define('DB_USER', 'storyUser');
+define('DB_PASS', '#storyLine99');
+define('DB_NAME', 'storyLine');
 
 function connect() {
   $connect = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);

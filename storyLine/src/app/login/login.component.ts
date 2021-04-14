@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
+import { SnackBarService } from '../shared/snack-bar/snack-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -16,28 +15,44 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private snackBarService: SnackBarService) { }
 
   ngOnInit() {
-    // FIXME: Add this later to redirect to home page
-    // firebase.auth().onAuthStateChanged(user => {
-    //   console.log(user); 
-    //   if (user) { // User is signed in
-    //     this.router.navigate(['./home']);
-    //   } 
-    // });
+    if (this.authService.isAuth())
+      this.router.navigate(['./home'])
     this.initForm();
   }
 
   initForm() {
     this.loginForm = new FormGroup({
-      'email': new FormControl(null, [ Validators.required ]),
+      'username': new FormControl(null, [Validators.required]),
       'password': new FormControl(null, [ Validators.required ])
     });
   }
 
   onSubmit() {
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password);  
+    if (this.loginForm.status === "INVALID") {
+      this.handleError("Invalid username or password");
+      return;
+    }
+    this.authService.login(this.loginForm.value.username, this.loginForm.value.password)
+      .subscribe(res => {
+        if (res && !res[0]['valid']) {
+          this.handleError("Invalid username or password");
+          return;
+        }
+        if (res && res[0]['valid']) {
+          this.authService.setUser(res[0]['username'], res[0]['email'])
+          this.router.navigate(['./home'])
+        } else {
+          this.handleError("Invalid username or password")
+        }
+      }, error => this.handleError(error))
+  }
+
+  handleError(error: string) {
+    this.snackBarService.onOpenSnackBar.next({ message: error, isError: true })
   }
 
   navigateToRegister() {

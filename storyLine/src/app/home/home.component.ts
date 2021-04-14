@@ -5,7 +5,6 @@ import { SubmitOneLinerComponent } from './submit-one-liner/submit-one-liner.com
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { StoriesSsComponent } from './stories-ss/stories-ss.component';
-import { DbService } from '../db.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +22,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private sql: SQLService,
-    private db: DbService,
     private _bottomSheet: MatBottomSheet,
     public dialog: MatDialog) { }
 
@@ -36,27 +34,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getOneLiners() {
-    this.subs.add(this.db.getOneLiners()
-      .subscribe(oneLiners => {
-        let tempOneLiners = [];
-        oneLiners.docs.forEach(doc => {
-          tempOneLiners.push(doc.data());
-        });
-        this.oneLiners = tempOneLiners;
-      }));
+    this.subs.add(this.sql.getOneLiners().subscribe(oneLiners => {
+      this.oneLiners = oneLiners
+    }));
   }
 
   listenForOneLiners() {
-    this.subs.add(this.db.onAddOneliner.subscribe(newOneLinerObj => {
-      this.addOneLiner(newOneLinerObj);
-    }));
+    this.subs.add(this.sql.onAddOneliner.subscribe(newOneLinerObj => {
+      this.addOneLiner(newOneLinerObj)
+    }))
   }
 
   listenForStories() {
     this.subs.add(this.sql.onInsertStory.subscribe(storyObj => {
       this.sql.dialogueRef.close();
-      this.fetchStories(storyObj);
-    }));
+      this.fetchStories(storyObj)
+    }))
   }
 
   updateLike(liked, oneLiner) {
@@ -72,16 +65,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   addOneLiner(newOneLiner) {
     newOneLiner = {
-      oneLiner: newOneLiner.content,
-      numViews: 0,
-      writtenAnon: 0,
-      timestamp: newOneLiner.timestamp,
-      authorUsername: sessionStorage.getItem('username'),
-      numUpVotes: 0
-    };
-    this.db.insertOneLiner(newOneLiner)
-      .then(res => { this.getOneLiners(); })
-      .catch(error => console.log(error));
+      "oneLiner": newOneLiner.content,
+      "numViews": 0,
+      "writtenAnon": 0,
+      "timestamp": newOneLiner.timestamp,
+      "authorUsername": sessionStorage.getItem('username'),
+      "numUpVotes": 0
+    }
+    this.sql.insertOneLiner(newOneLiner).subscribe(res => {
+      this.getOneLiners();
+    }, error => console.log(error))
   }
 
   fetchStories(oneLinerObj) {
@@ -107,7 +100,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       maxWidth: '100vw',
       height: '100vh',
       panelClass: 'storiesViewerContainer',
-      data: { stories: stories, oneLiner: oneLiner }
+      data: { stories:  stories, oneLiner: oneLiner}
     });
   }
 

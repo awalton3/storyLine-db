@@ -38,9 +38,9 @@ export class ProfileComponent implements OnInit {
       this.provideFeedback("Passwords must match", true)
     else {
       this.authService.updatePassword(this.user['username'], this.forgotForm.value.new)
-        // .subscribe(res => {
-        //   this.provideFeedback("Password Succesfully Updated", false)
-        // }, error => console.log(error))
+        .subscribe(res => {
+          this.provideFeedback("Password Succesfully Updated", false)
+        }, error => console.log(error))
     }
   }
 

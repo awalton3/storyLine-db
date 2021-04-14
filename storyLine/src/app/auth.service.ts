@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import { SnackBarService } from './shared/snack-bar/snack-bar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,95 +8,58 @@ import { SnackBarService } from './shared/snack-bar/snack-bar.service';
 
 export class AuthService {
 
-  constructor(private router: Router, private snackBarService: SnackBarService) {}
+  baseUrl = 'http://3.230.76.98:4201'
 
-  register(email: string, password: string) {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(userObj => {
-        console.log(userObj); 
-        this.verifyEmail();
-        this.router.navigate(['/login'])
-      })
-      .catch(error => this.handleError(error)); 
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  login(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.router.navigate(['/home']);
-      }).catch(error => { 
-        this.handleError(error.code); 
-      })
-  }
-
-  updatePassword(username: string, newPassword: string) {  //TODO: 
-
-  }
-
-  verifyEmail() {
-    firebase.auth().currentUser.sendEmailVerification()
-      .then(() => this.onSuccess("An email verification has been sent."))
-      .catch(() => this.onError("An error occured when sending the email verification. Please be sure the email is valid."));
-  }
-
-  onError(error: string) {
-    this.snackBarService.onOpenSnackBar.next({ message: error, isError: true })
-  }
-
-  onSuccess(success: string) {
-    this.snackBarService.onOpenSnackBar.next({ message: success, isError: false })
-  }
-
-  handleError(errorCode: any) {
-    switch (errorCode) {
-      //login
-      case 'auth/invalid-email':
-        this.onError('Your email is invalid.')
-        break;
-      case 'auth/user-disabled':
-        this.onError('Your account is disabled.')
-        break;
-      case 'auth/user-not-found':
-        this.onError('Your email is not registered.')
-        break;
-      case 'auth/wrong-password':
-        this.onError('Your password is invalid.')
-        break;
-
-      //register
-      case 'auth/email-already-in-use':
-        this.onError('Email already in use')
-        break;
-      case 'auth/invalid-email':
-        this.onError('Email address is invalid')
-        break;
-      case 'auth/operation-not-allowed':
-        this.onError('Operation not allowed');
-        break;
-      case 'auth/weak-password':
-        this.onError('Password is weak');
-        break;
-
-      //reset
-      case 'auth/invalid-email':
-        this.onError('Email invalid');
-        break;
-      case 'auth/user-not-found':
-        this.onError('No user found');
-        break;
+  isAuth() {
+    if (sessionStorage.getItem('username') === null) {
+      return false;
     }
+    return true;
+  }
+
+  getUser() {
+    return sessionStorage.getItem('username')
+  }
+
+  setUser(username: string, email: string) {
+    sessionStorage.setItem('username', username);
+    sessionStorage.setItem('email', email);
+  }
+
+  clearUser() {
+    sessionStorage.clear();
   }
 
   logout() {
     sessionStorage.clear();
-    firebase.auth().signOut();
     this.router.navigate(['/login'])
   }
 
-  resetPassword(email: string) {
-    firebase.auth().sendPasswordResetEmail(email)
-      .then(() => this.onSuccess("A password reset email was sent to " + email))
-      .catch(error => this.handleError(error.code));
+
+  register(username: string, email: string, password: string) {
+    console.log(email)
+    return this.http.post(this.baseUrl + "/insertAcct.php", {
+      username: username,
+      email: email,
+      displayName: username,
+      password: password
+    })
+  }
+
+  login(username: string, password: string) {
+    return this.http.post(this.baseUrl + "/selectAcct.php", {
+      username: username,
+      plaintextPwd: password
+    })
+  }
+
+  updatePassword(username: string, newPassword: string) {
+    return this.http.post(this.baseUrl + "/updateAcctPassword.php", {
+      username: username,
+      password: newPassword
+    })
   }
 
 }

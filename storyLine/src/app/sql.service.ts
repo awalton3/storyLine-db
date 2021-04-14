@@ -11,9 +11,9 @@ export class SQLService {
 
   //SELECTED ONELINER
   selectedOneliner: string;
-  dialogueRef: any; 
+  dialogueRef: any;
 
-  baseUrl = 'http://db.cse.nd.edu:4201'
+  baseUrl = 'http://3.230.76.98:4201'
   onAddOneliner = new Subject<any>();
   onInsertStory = new Subject<any>();
   // onCloseStoriesDialog = new Subject<any>();

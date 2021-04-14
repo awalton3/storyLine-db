@@ -38,16 +38,6 @@ import { AppContentComponent } from './app-content/app-content.component';
 import { FriendFeedComponent } from './friend-feed/friend-feed.component';
 import { StoriesSsComponent } from './home/stories-ss/stories-ss.component';
 
-//Firebase
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { environment } from '../environments/environment';
-import * as firebase from 'firebase';
-
-firebase.initializeApp(environment.firebaseConfig);
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,10 +58,6 @@ firebase.initializeApp(environment.firebaseConfig);
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    AngularFireStorageModule,
-    AngularFireAuthModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsMaterialComponentsModule,
