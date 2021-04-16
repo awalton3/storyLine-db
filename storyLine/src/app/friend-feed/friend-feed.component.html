@@ -1,7 +1,7 @@
-<app-toolbar [content]="toolbarContent" (onOpenSideNav)= "sidenav.toggle()" (onDismissDrawer)= "toolbarContent = null; drawer.close()"></app-toolbar>
+<app-toolbar (onOpenSideNav)= "sidenav.toggle()"></app-toolbar>
 
 <mat-drawer-container>
-  <mat-drawer #sidenav [mode]="Over" class="sidenav-drawer">
+  <mat-drawer #sidenav [mode]="'Over'" class="sidenav-drawer">
     <div>
       <mat-nav-list>
         <a mat-list-item [routerLink]="['/home']"><p class="sidenav-text">FEED</p></a>

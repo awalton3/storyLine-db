@@ -11,7 +11,10 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  user = {}
+  user = {
+    username: sessionStorage.getItem('username'),
+    email: sessionStorage.getItem('email')
+  };
   forgotForm: FormGroup;
 
   constructor(

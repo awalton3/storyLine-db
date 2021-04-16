@@ -14,6 +14,7 @@ import { StoriesSsComponent } from './stories-ss/stories-ss.component';
 
 export class HomeComponent implements OnInit, OnDestroy {
 
+  value: any;
   oneLiners: any;
   selectedStories: any;
   selectedOneliner: string;
