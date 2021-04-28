@@ -1,0 +1,37 @@
+config:
+  target: "http://44.192.52.163:4201"
+  phases: 
+    - duration: 6
+      arrivalRate: 5
+      name: Warm up
+    - duration: 12
+      arrivalRate: 5
+      rampTo: 10
+      name: Ramp up load
+    - duration: 10
+      arrivalRate: 10
+      name: Sustained load
+  payload:
+    path: "../artillery_csv/users.csv"
+    fields: 
+      - "email"
+      - "username"
+      - "password"
+  plugins:
+    metrics-by-endpoint: {}
+scenarios:
+  - name: "Create account and login"
+    flow:
+      - post:
+          url: "/insertAcct.php"
+          json:
+            username: "{{ username }}"
+            email: "{{ email }}"
+            displayName: "{{ username }}"
+            password: "{{ password }}"
+      - think: 1   # Pause for 1 second before logging in
+      - post:
+          url: "/selectAcct.php"
+          json:
+            username: "{{ username }}"
+            plaintextPwd: "{{ password }}"
