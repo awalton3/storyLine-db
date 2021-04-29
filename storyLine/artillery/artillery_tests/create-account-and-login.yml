@@ -2,14 +2,14 @@ config:
   target: "http://44.192.52.163:4201"
   phases: 
     - duration: 60
-      arrivalRate: 5
+      arrivalRate: 100
       name: Warm up
     - duration: 120
-      arrivalRate: 5
-      rampTo: 50
+      arrivalRate: 100
+      rampTo: 10000
       name: Ramp up load
     - duration: 600
-      arrivalRate: 50
+      arrivalRate: 10000
       name: Sustained load
   payload:
     path: "../artillery_csv/users.csv"
@@ -29,7 +29,7 @@ scenarios:
             email: "{{ email }}"
             displayName: "{{ username }}"
             password: "{{ password }}"
-      - think: 1   # Pause for 1 second before logging in
+      - think: 3   # Pause for 3 seconds before logging in
       - post:
           url: "/selectAcct.php"
           json:
